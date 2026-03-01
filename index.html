@@ -6,12 +6,14 @@
 <title>Undangan Bukber Pakar Corp</title>
 
 <style>
-body {
+
+body{
 margin:0;
-font-family: 'Georgia', serif;
-background:#0d0d0d;
-color:#d4af37;
+font-family:'Georgia', serif;
+background:linear-gradient(180deg,#ffffff,#f9f3e6,#fff8dc);
+color:#b8860b;
 scroll-behavior:smooth;
+overflow-x:hidden;
 }
 
 section{
@@ -22,75 +24,108 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
+opacity:0;
+transform:translateY(30px);
+transition:1.2s ease;
 }
 
-h1,h2{margin:10px;}
+section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+h2{
+font-size:28px;
+margin:10px 0;
+}
+
+p{
+font-size:18px;
+}
 
 button{
-background:#d4af37;
-color:black;
-padding:12px 25px;
+background:linear-gradient(45deg,#d4af37,#f5d76e);
+color:white;
 border:none;
-border-radius:30px;
+padding:12px 30px;
+border-radius:40px;
 cursor:pointer;
 font-weight:bold;
 margin-top:20px;
+transition:0.4s;
+box-shadow:0 4px 15px rgba(212,175,55,0.4);
 }
 
-img{
-max-width:80%;
-border-radius:15px;
-margin-top:20px;
+button:hover{
+transform:scale(1.08);
+box-shadow:0 6px 25px rgba(212,175,55,0.7);
 }
 
 .countdown{
-font-size:24px;
+font-size:22px;
 margin-top:15px;
+font-weight:bold;
 }
 
-.fade{
-animation:fade 2s ease-in;
+img{
+max-width:85%;
+border-radius:20px;
+margin-top:20px;
+box-shadow:0 10px 30px rgba(212,175,55,0.3);
 }
 
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
+.moon{
+font-size:60px;
+animation:float 3s ease-in-out infinite;
 }
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- SLIDE 1 -->
-<section class="fade">
-<h1>🌙 Ramadhan Kareem</h1>
-<h2>Undangan Buka Puasa Bersama</h2>
-<p>PT Pakar Corp Integrasi Utama</p>
-<button onclick="document.getElementById('detail').scrollIntoView()">Buka Undangan</button>
+<section>
+<div class="moon">🌙</div>
+<h1>Ramadhan Kareem</h1>
+<p>Undangan Buka Puasa Bersama</p>
+<p><b>PT Pakar Corp Integrasi Utama</b></p>
+<button onclick="scrollToSection('detail')">Buka Undangan</button>
 </section>
 
 <!-- SLIDE 2 -->
-<section id="detail" class="fade">
+<section id="detail">
 <h2>Jumat, 6 Maret 2026</h2>
-<p>17.00 WIB - Selesai</p>
+<p>17.00 WIB – Selesai</p>
 <p>Dresscode: Hitam & Coklat</p>
 <div class="countdown" id="countdown"></div>
-<button onclick="document.getElementById('lokasi').scrollIntoView()">Lihat Lokasi</button>
+<button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
 <!-- SLIDE 3 -->
-<section id="lokasi" class="fade">
+<section id="lokasi">
 <h2>Omah Joglo Gendis</h2>
-<img src="https://source.unsplash.com/600x400/?joglo" alt="Omah Joglo">
+<img src="https://source.unsplash.com/800x500/?joglo" alt="Omah Joglo">
 <br>
 <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
 <button>Lihat di Google Maps</button>
 </a>
-<button onclick="document.getElementById('rsvp').scrollIntoView()">RSVP</button>
+<button onclick="scrollToSection('rsvp')">RSVP</button>
 </section>
 
 <!-- SLIDE 4 -->
-<section id="rsvp" class="fade">
+<section id="rsvp">
 <h2>Konfirmasi Kehadiran</h2>
 <a href="https://wa.me/628XXXXXXXXXX?text=Halo,%20saya%20akan%20hadir%20di%20acara%20Bukber%20Pakar%20Corp" target="_blank">
 <button>RSVP via WhatsApp</button>
@@ -98,6 +133,22 @@ to{opacity:1;}
 </section>
 
 <script>
+
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+var sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", function(){
+sections.forEach(sec=>{
+var position = sec.getBoundingClientRect().top;
+if(position < window.innerHeight - 100){
+sec.classList.add("show");
+}
+});
+});
+
 var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
 var x = setInterval(function() {
 var now = new Date().getTime();
@@ -106,13 +157,16 @@ var days = Math.floor(distance / (1000 * 60 * 60 * 24));
 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
 document.getElementById("countdown").innerHTML =
 days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
+
 if (distance < 0) {
 clearInterval(x);
 document.getElementById("countdown").innerHTML = "Acara Dimulai";
 }
 }, 1000);
+
 </script>
 
 </body>
