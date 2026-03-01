@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Undangan Bukber Pakar Corp</title>
 
 <style>
-html {
-scroll-snap-type: y mandatory;
-scroll-behavior: smooth;
+html{
+scroll-snap-type:y mandatory;
+scroll-behavior:smooth;
 }
 
 body{
@@ -19,7 +19,7 @@ color:#b8860b;
 overflow-x:hidden;
 }
 
-/* SECTION STYLE */
+/* SECTION */
 section{
 min-height:100vh;
 display:flex;
@@ -54,6 +54,7 @@ font-size:clamp(16px,2.5vw,22px);
 max-width:750px;
 }
 
+/* BUTTON */
 button{
 background:linear-gradient(45deg,#d4af37,#f5d76e);
 color:white;
@@ -75,9 +76,7 @@ box-shadow:0 0 25px rgba(212,175,55,0.9);
 
 /* HERO */
 .hero{
-background-image:url('bg bukber.jpeg');
-background-size:cover;
-background-position:center;
+background:url('bg bukber.jpeg') center/cover no-repeat;
 color:white;
 position:relative;
 }
@@ -85,10 +84,7 @@ position:relative;
 .hero::after{
 content:"";
 position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:rgba(0,0,0,0.55);
 z-index:0;
 }
@@ -98,7 +94,7 @@ position:relative;
 z-index:2;
 }
 
-/* Crescent Moon */
+/* MOON */
 .moon{
 position:absolute;
 top:10%;
@@ -111,10 +107,9 @@ box-shadow:0 0 30px gold;
 z-index:1;
 }
 
-.moon:after{
+.moon::after{
 content:"";
 position:absolute;
-top:0;
 left:25px;
 width:80px;
 height:80px;
@@ -122,7 +117,22 @@ background:#000;
 border-radius:50%;
 }
 
-/* Mosque silhouette */
+/* SAVE THE DATE LETTERING */
+.save-date{
+position:absolute;
+top:12%;
+left:50%;
+transform:translateX(-50%) rotate(-4deg);
+font-family:'Brush Script MT','Segoe Script',cursive;
+font-size:clamp(60px,10vw,150px);
+color:rgba(212,175,55,0.28);
+letter-spacing:4px;
+z-index:0;
+pointer-events:none;
+white-space:nowrap;
+}
+
+/* MOSQUE */
 .mosque{
 position:absolute;
 bottom:0;
@@ -132,7 +142,7 @@ opacity:0.06;
 pointer-events:none;
 }
 
-/* Sparkle */
+/* SPARKLE */
 .sparkle{
 position:fixed;
 width:6px;
@@ -185,9 +195,9 @@ margin-top:30px;
 <body>
 
 <!-- Sparkles -->
-<div class="sparkle" style="top:20%; left:10%;"></div>
-<div class="sparkle" style="top:40%; left:80%;"></div>
-<div class="sparkle" style="top:70%; left:30%;"></div>
+<div class="sparkle" style="top:20%;left:10%;"></div>
+<div class="sparkle" style="top:40%;left:80%;"></div>
+<div class="sparkle" style="top:70%;left:30%;"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -200,10 +210,13 @@ margin-top:30px;
 
 <!-- DETAIL -->
 <section id="detail">
+<div class="save-date">Save The Date</div>
 <img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
+
 <h2>Jumat, 6 Maret 2026</h2>
 <p>17.00 WIB – Selesai</p>
 <p><b>Dresscode: Hitam & Coklat</b></p>
+
 <div class="countdown" id="countdown"></div>
 <button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
@@ -211,7 +224,7 @@ margin-top:30px;
 <!-- LOKASI -->
 <section id="lokasi">
 <h2>Omah Joglo Gendis</h2>
-<img src="omah.jpg" style="max-width:85%; border-radius:20px;">
+<img src="omah.jpg" style="max-width:85%;border-radius:20px;">
 <br>
 <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
 <button>Lihat di Google Maps</button>
@@ -222,98 +235,60 @@ margin-top:30px;
 <!-- RSVP -->
 <section id="rsvp">
 <h2>Konfirmasi Kehadiran</h2>
-
 <input type="text" id="nama" placeholder="Masukkan Nama Anda">
-
 <br>
-
 <button class="rsvp-btn hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
 <button class="rsvp-btn tidak" onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
-
 <p id="hasil" style="margin-top:20px;"></p>
 </section>
 
 <!-- PENUTUP -->
 <section>
 <h2>Terima Kasih</h2>
-<p>
-Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
-Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
-</p>
-<p style="font-style:italic;">
-Semoga silaturahmi ini membawa keberkahan bagi kita semua.
-</p>
-<footer>
-PT Pakar Corp Integrasi Utama <br>
-2026
-</footer>
+<p>Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran Bapak/Ibu.</p>
+<p style="font-style:italic;">Semoga silaturahmi ini membawa keberkahan.</p>
+<footer>PT Pakar Corp Integrasi Utama<br>2026</footer>
 </section>
 
 <script>
-
-/* Smooth show animation */
-var sections = document.querySelectorAll("section");
-window.addEventListener("scroll", function(){
-sections.forEach(sec=>{
-var position = sec.getBoundingClientRect().top;
-if(position < window.innerHeight - 100){
+/* Reveal */
+document.querySelectorAll("section").forEach(sec=>{
+window.addEventListener("scroll",()=>{
+if(sec.getBoundingClientRect().top < window.innerHeight - 100){
 sec.classList.add("show");
 }
 });
 });
 
-/* Scroll to section */
+/* Scroll */
 function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
 /* Countdown */
-var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
-setInterval(function() {
-var now = new Date().getTime();
-var distance = countDownDate - now;
-var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-document.getElementById("countdown").innerHTML =
-days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
-}, 1000);
+const target = new Date("March 6, 2026 17:00:00").getTime();
+setInterval(()=>{
+const now = new Date().getTime();
+const d = target - now;
+if(d <= 0){
+document.getElementById("countdown").innerHTML="Acara Sedang Berlangsung";
+return;
+}
+const days=Math.floor(d/(1000*60*60*24));
+const hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+const minutes=Math.floor((d%(1000*60*60))/(1000*60));
+const seconds=Math.floor((d%(1000*60))/1000);
+document.getElementById("countdown").innerHTML=
+`${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+},1000);
 
 /* RSVP */
 function kirimRSVP(status){
-var nama = document.getElementById("nama").value;
-if(nama === ""){
-alert("Silakan isi nama terlebih dahulu.");
-return;
+const nama=document.getElementById("nama").value;
+if(!nama){alert("Silakan isi nama.");return;}
+document.getElementById("hasil").innerHTML=
+`Terima kasih, <b>${nama}</b>. Konfirmasi Anda: <b>${status}</b>`;
 }
-document.getElementById("hasil").innerHTML =
-"Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
-}
-
-/* Auto snap scroll */
-let slides = document.querySelectorAll("section");
-let currentSlide = 0;
-let autoMode = true;
-
-function snapScroll(){
-if(!autoMode) return;
-
-currentSlide++;
-if(currentSlide >= slides.length){
-currentSlide = slides.length - 1;
-return;
-}
-
-slides[currentSlide].scrollIntoView({behavior:"smooth"});
-}
-
-setInterval(snapScroll, 5000);
-
-window.addEventListener("wheel", function(){ autoMode = false; });
-window.addEventListener("touchstart", function(){ autoMode = false; });
-
 </script>
 
 </body>
