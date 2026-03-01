@@ -15,6 +15,7 @@ scroll-behavior:smooth;
 overflow-x:hidden;
 }
 
+/* SECTION */
 section{
 height:100vh;
 display:flex;
@@ -35,13 +36,13 @@ transform:translateY(0);
 }
 
 h1{
-font-size:60px;
+font-size:65px;
 letter-spacing:3px;
 margin-bottom:10px;
 }
 
 h2{
-font-size:38px;
+font-size:40px;
 margin:10px 0;
 }
 
@@ -50,6 +51,7 @@ font-size:20px;
 margin:6px 0;
 }
 
+/* BUTTON */
 button{
 background:linear-gradient(45deg,#d4af37,#f5d76e);
 color:white;
@@ -75,14 +77,7 @@ margin-top:20px;
 font-weight:bold;
 }
 
-img{
-max-width:85%;
-border-radius:20px;
-margin-top:20px;
-box-shadow:0 10px 30px rgba(212,175,55,0.3);
-}
-
-/* HERO SECTION */
+/* HERO */
 .hero{
 background-image:url('BACKGROUND.jpg');
 background-size:cover;
@@ -97,7 +92,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.55);
 z-index:0;
 }
 
@@ -106,17 +101,25 @@ position:relative;
 z-index:2;
 }
 
+/* LOGO */
+.logo{
+width:120px;
+margin-bottom:20px;
+}
+
+/* SILUET MASJID */
 .mosque{
 position:absolute;
 bottom:0;
 left:0;
 width:100%;
-opacity:0.07;
+opacity:0.15;
 z-index:0;
 }
 
+/* BULAN */
 .moon{
-font-size:70px;
+font-size:80px;
 animation:float 3s ease-in-out infinite;
 }
 
@@ -124,6 +127,23 @@ animation:float 3s ease-in-out infinite;
 0%{transform:translateY(0);}
 50%{transform:translateY(-15px);}
 100%{transform:translateY(0);}
+}
+
+/* PARTIKEL EMAS */
+.sparkle{
+position:absolute;
+width:5px;
+height:5px;
+background:gold;
+border-radius:50%;
+animation:spark 6s infinite;
+opacity:0.6;
+}
+
+@keyframes spark{
+0%{transform:translateY(0); opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-600px); opacity:0;}
 }
 
 footer{
@@ -136,13 +156,19 @@ margin-top:30px;
 
 <body>
 
+<!-- BACKSOUND -->
+<audio id="bgm" loop>
+<source src="musik.mp3" type="audio/mpeg">
+</audio>
+
 <!-- SLIDE 1 -->
 <section class="hero">
+<img src="LOGO.png" class="logo">
 <div class="moon">🌙</div>
 <h1>Ramadhan Kareem</h1>
 <p style="font-size:24px;">Undangan Buka Puasa Bersama</p>
 <p style="font-size:22px;"><b>PT Pakar Corp Integrasi Utama</b></p>
-<button onclick="scrollToSection('detail')">Buka Undangan</button>
+<button onclick="startMusic()">Buka Undangan</button>
 </section>
 
 <!-- SLIDE 2 -->
@@ -158,7 +184,7 @@ margin-top:30px;
 <!-- SLIDE 3 -->
 <section id="lokasi">
 <h2>Omah Joglo Gendis</h2>
-<img src="https://source.unsplash.com/800x500/?joglo" alt="Omah Joglo">
+<img src="https://source.unsplash.com/800x500/?joglo" style="max-width:85%; border-radius:20px;">
 <br>
 <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
 <button>Lihat di Google Maps</button>
@@ -175,30 +201,31 @@ margin-top:30px;
 <button onclick="scrollToSection('penutup')">Lanjut</button>
 </section>
 
-<!-- SLIDE 5 PENUTUP -->
+<!-- SLIDE 5 -->
 <section id="penutup">
 <h2>Terima Kasih</h2>
-
 <p style="max-width:700px; line-height:1.6;">
 Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
 Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
 </p>
-
 <p style="font-style:italic; font-size:18px;">
 Semoga silaturahmi ini membawa keberkahan bagi kita semua.
 </p>
-
 <footer>
 PT Pakar Corp Integrasi Utama <br>
 2026
 </footer>
-
 </section>
 
 <script>
 
 function scrollToSection(id){
 document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+function startMusic(){
+document.getElementById("bgm").play();
+scrollToSection('detail');
 }
 
 var sections = document.querySelectorAll("section");
@@ -211,8 +238,9 @@ sec.classList.add("show");
 });
 });
 
+/* COUNTDOWN */
 var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
-var x = setInterval(function() {
+setInterval(function() {
 var now = new Date().getTime();
 var distance = countDownDate - now;
 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -222,11 +250,6 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 document.getElementById("countdown").innerHTML =
 days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
-
-if (distance < 0) {
-clearInterval(x);
-document.getElementById("countdown").innerHTML = "Acara Dimulai";
-}
 }, 1000);
 
 </script>
