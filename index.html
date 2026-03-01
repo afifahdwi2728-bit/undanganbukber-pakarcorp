@@ -315,33 +315,46 @@ opacity:.5;
   
 <script>
 function openInvitation(){
-document.getElementById("cover").classList.add("hide");
-document.querySelector(".hero").scrollIntoView({behavior:"smooth"});
+  document.getElementById("cover").classList.add("hide");
+  document.querySelector(".hero").scrollIntoView({behavior:"smooth"});
+
+  const music = document.getElementById("bgm");
+  music.volume = 0.6;
+  music.play();
 }
 
 function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-/* reveal */
+/* reveal animation */
 document.querySelectorAll("section").forEach(sec=>{
-window.addEventListener("scroll",()=>{
-if(sec.getBoundingClientRect().top < window.innerHeight - 120){
-sec.classList.add("show");
-}
-});
+  window.addEventListener("scroll",()=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight - 120){
+      sec.classList.add("show");
+    }
+  });
 });
 
 function kirimRSVP(status){
-const nama=document.getElementById("nama").value;
-if(!nama){alert("Isi nama dulu");return;}
-document.getElementById("hasil").innerHTML=
-`Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
+  const nama=document.getElementById("nama").value;
+  if(!nama){
+    alert("Isi nama dulu");
+    return;
+  }
+  document.getElementById("hasil").innerHTML=
+  `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
 }
 </script>
 
+<!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="maher zain.mp3" type="audio/mpeg">
+</audio>
+
 </body>
 </html>
+
 
 
 
