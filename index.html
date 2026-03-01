@@ -6,20 +6,16 @@
 <title>Undangan Bukber Pakar Corp</title>
 
 <style>
-html {
-scroll-snap-type: y mandatory;
-scroll-behavior: smooth;
-}
-
 body{
 margin:0;
 font-family:'Georgia', serif;
 background:linear-gradient(180deg,#ffffff,#fff6e5,#fdecc8);
 color:#b8860b;
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
-/* SECTION STYLE */
+/* SECTION */
 section{
 min-height:100vh;
 display:flex;
@@ -31,8 +27,7 @@ padding:8vw;
 position:relative;
 opacity:0;
 transform:translateY(40px);
-transition:1.2s ease;
-scroll-snap-align:start;
+transition:1.5s ease;
 }
 
 section.show{
@@ -52,25 +47,6 @@ font-size:clamp(28px,5vw,48px);
 p{
 font-size:clamp(16px,2.5vw,22px);
 max-width:750px;
-}
-
-button{
-background:linear-gradient(45deg,#d4af37,#f5d76e);
-color:white;
-border:none;
-padding:14px 35px;
-border-radius:40px;
-cursor:pointer;
-font-weight:bold;
-margin-top:20px;
-transition:0.4s;
-font-size:clamp(14px,2vw,18px);
-box-shadow:0 0 15px rgba(212,175,55,0.5);
-}
-
-button:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px rgba(212,175,55,0.9);
 }
 
 /* HERO */
@@ -98,7 +74,7 @@ position:relative;
 z-index:2;
 }
 
-/* Crescent Moon */
+/* Moon */
 .moon{
 position:absolute;
 top:10%;
@@ -108,7 +84,6 @@ height:80px;
 background:radial-gradient(circle at 30% 30%, #fff6c2, #d4af37);
 border-radius:50%;
 box-shadow:0 0 30px gold;
-z-index:1;
 }
 
 .moon:after{
@@ -122,7 +97,7 @@ background:#000;
 border-radius:50%;
 }
 
-/* Mosque silhouette */
+/* Mosque */
 .mosque{
 position:absolute;
 bottom:0;
@@ -169,6 +144,9 @@ margin:10px;
 font-size:20px;
 padding:12px 25px;
 border-radius:30px;
+border:none;
+color:white;
+cursor:pointer;
 }
 
 .hadir{background:#28a745;}
@@ -184,64 +162,48 @@ margin-top:30px;
 
 <body>
 
-<!-- Sparkles -->
 <div class="sparkle" style="top:20%; left:10%;"></div>
 <div class="sparkle" style="top:40%; left:80%;"></div>
 <div class="sparkle" style="top:70%; left:30%;"></div>
 
-<!-- HERO -->
 <section class="hero">
 <div class="moon"></div>
 <h1>Ramadhan Kareem</h1>
 <p>Undangan Buka Puasa Bersama</p>
 <p><b>PT Pakar Corp Integrasi Utama</b></p>
-<button onclick="scrollToSection('detail')">Buka Undangan</button>
 </section>
 
-<!-- DETAIL -->
-<section id="detail">
+<section>
 <img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
 <h2>Jumat, 6 Maret 2026</h2>
 <p>17.00 WIB – Selesai</p>
 <p><b>Dresscode: Hitam & Coklat</b></p>
 <div class="countdown" id="countdown"></div>
-<button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
-<!-- LOKASI -->
-<section id="lokasi">
+<section>
 <h2>Omah Joglo Gendis</h2>
 <img src="omah.jpg" style="max-width:85%; border-radius:20px;">
 <br>
 <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
-<button>Lihat di Google Maps</button>
+<button style="margin-top:20px;background:linear-gradient(45deg,#d4af37,#f5d76e);padding:12px 30px;border-radius:30px;border:none;color:white;">Lihat di Google Maps</button>
 </a>
-<button onclick="scrollToSection('rsvp')">RSVP</button>
 </section>
 
-<!-- RSVP -->
-<section id="rsvp">
+<section>
 <h2>Konfirmasi Kehadiran</h2>
-
 <input type="text" id="nama" placeholder="Masukkan Nama Anda">
-
 <br>
-
 <button class="rsvp-btn hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
 <button class="rsvp-btn tidak" onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
-
 <p id="hasil" style="margin-top:20px;"></p>
 </section>
 
-<!-- PENUTUP -->
 <section>
 <h2>Terima Kasih</h2>
 <p>
 Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
 Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
-</p>
-<p style="font-style:italic;">
-Semoga silaturahmi ini membawa keberkahan bagi kita semua.
 </p>
 <footer>
 PT Pakar Corp Integrasi Utama <br>
@@ -251,7 +213,7 @@ PT Pakar Corp Integrasi Utama <br>
 
 <script>
 
-/* Smooth show animation */
+/* Fade animation */
 var sections = document.querySelectorAll("section");
 window.addEventListener("scroll", function(){
 sections.forEach(sec=>{
@@ -261,11 +223,6 @@ sec.classList.add("show");
 }
 });
 });
-
-/* Scroll to section */
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
 
 /* Countdown */
 var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
@@ -292,27 +249,23 @@ document.getElementById("hasil").innerHTML =
 "Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
 }
 
-/* Auto snap scroll */
-let slides = document.querySelectorAll("section");
-let currentSlide = 0;
-let autoMode = true;
+/* AUTO SCROLL PELAN TERUS JALAN */
+let autoScroll = true;
 
-function snapScroll(){
-if(!autoMode) return;
-
-currentSlide++;
-if(currentSlide >= slides.length){
-currentSlide = slides.length - 1;
-return;
+function slowScroll(){
+if(!autoScroll) return;
+window.scrollBy(0, 1);
+requestAnimationFrame(slowScroll);
 }
 
-slides[currentSlide].scrollIntoView({behavior:"smooth"});
-}
+/* mulai 2 detik setelah buka */
+setTimeout(function(){
+slowScroll();
+},2000);
 
-setInterval(snapScroll, 5000);
-
-window.addEventListener("wheel", function(){ autoMode = false; });
-window.addEventListener("touchstart", function(){ autoMode = false; });
+/* stop kalau user scroll manual */
+window.addEventListener("wheel", ()=> autoScroll=false);
+window.addEventListener("touchstart", ()=> autoScroll=false);
 
 </script>
 
