@@ -1,43 +1,25 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan Bukber</title>
+<title>Undangan Bukber Pakar Corp</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: 'Segoe UI', sans-serif;
+html {
+scroll-snap-type: y mandatory;
+scroll-behavior: smooth;
 }
 
 body{
-background: linear-gradient(to bottom, #ffffff, #fff8e7);
+margin:0;
+font-family:'Georgia', serif;
+background:linear-gradient(180deg,#ffffff,#fff6e5,#fdecc8);
+color:#b8860b;
 overflow-x:hidden;
-scroll-behavior:smooth;
 }
 
-/* ====== EFFECT EMAS JATUH ====== */
-.gold{
-position:fixed;
-top:-10px;
-width:4px;
-height:4px;
-background:gold;
-border-radius:50%;
-animation:fall linear infinite;
-opacity:0.8;
-}
-
-@keyframes fall{
-to{
-transform:translateY(100vh);
-}
-}
-
-/* ====== SECTION ====== */
+/* SECTION STYLE */
 section{
 min-height:100vh;
 display:flex;
@@ -45,171 +27,309 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:30px 20px;
+padding:8vw;
 position:relative;
+opacity:0;
+transform:translateY(40px);
+transition:1.2s ease;
+scroll-snap-align:start;
 }
 
-/* ====== SILUET MASJID ====== */
-.mosque{
-position:absolute;
-bottom:0;
-width:100%;
-opacity:0.15;
+section.show{
+opacity:1;
+transform:translateY(0);
 }
 
-/* ====== TEXT ====== */
 h1{
-font-size:clamp(28px,5vw,48px);
-color:#b8860b;
-margin-bottom:20px;
+font-size:clamp(42px,7vw,80px);
+letter-spacing:3px;
 }
 
 h2{
-font-size:clamp(22px,4vw,32px);
-color:#b8860b;
-margin-bottom:15px;
+font-size:clamp(28px,5vw,48px);
 }
 
 p{
-font-size:clamp(16px,2.5vw,20px);
-max-width:700px;
-color:#444;
-line-height:1.6;
+font-size:clamp(16px,2.5vw,22px);
+max-width:750px;
 }
 
-/* ====== BOX TIMBUL ====== */
-.box{
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(212,175,55,0.25);
-margin-top:20px;
-max-width:800px;
-}
-
-/* ====== BUTTON ====== */
-.btn{
-margin-top:30px;
-padding:12px 30px;
-background:linear-gradient(to right,#d4af37,#f1d77a);
-border:none;
-border-radius:30px;
+button{
+background:linear-gradient(45deg,#d4af37,#f5d76e);
 color:white;
-font-weight:bold;
+border:none;
+padding:14px 35px;
+border-radius:40px;
 cursor:pointer;
-text-decoration:none;
-display:inline-block;
-transition:0.3s;
+font-weight:bold;
+margin-top:20px;
+transition:0.4s;
+font-size:clamp(14px,2vw,18px);
+box-shadow:0 0 15px rgba(212,175,55,0.5);
 }
 
-.btn:hover{
-transform:scale(1.05);
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px rgba(212,175,55,0.9);
 }
 
-/* ====== RESPONSIVE ====== */
-@media(max-width:600px){
-section{
-padding:20px 15px;
+/* HERO */
+.hero{
+background-image:url('bg bukber.jpeg');
+background-size:cover;
+background-position:center;
+color:white;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:0;
+}
+
+.hero *{
+position:relative;
+z-index:2;
+}
+
+/* Crescent Moon */
+.moon{
+position:absolute;
+top:10%;
+right:8%;
+width:80px;
+height:80px;
+background:radial-gradient(circle at 30% 30%, #fff6c2, #d4af37);
+border-radius:50%;
+box-shadow:0 0 30px gold;
+z-index:1;
+}
+
+.moon:after{
+content:"";
+position:absolute;
+top:0;
+left:25px;
+width:80px;
+height:80px;
+background:#000;
+border-radius:50%;
+}
+
+/* Mosque silhouette */
+.mosque{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+opacity:0.06;
+pointer-events:none;
+}
+
+/* ===== GOLD FALL EFFECT ===== */
+.gold{
+position:fixed;
+top:-10px;
+width:5px;
+height:5px;
+background:gold;
+border-radius:50%;
+opacity:0.6;
+animation:fall linear infinite;
+z-index:1;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
 }
 }
 
+/* DETAIL BOX STYLE */
+.detail-box{
+background:white;
+padding:20px 30px;
+margin:10px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(212,175,55,0.25);
+width:clamp(250px,70%,500px);
+}
+
+/* Countdown */
+.countdown{
+margin-top:20px;
+font-weight:bold;
+font-size:clamp(16px,2.5vw,22px);
+}
+
+/* RSVP */
+input{
+padding:12px;
+border-radius:30px;
+border:1px solid #d4af37;
+width:clamp(200px,50%,350px);
+text-align:center;
+margin-top:15px;
+}
+
+.rsvp-btn{
+margin:10px;
+font-size:20px;
+padding:12px 25px;
+border-radius:30px;
+}
+
+.hadir{background:#28a745;}
+.tidak{background:#dc3545;}
+
+footer{
+font-size:14px;
+opacity:0.7;
+margin-top:30px;
+}
 </style>
 </head>
+
 <body>
 
-<!-- EFFECT EMAS -->
+<!-- GOLD EFFECT SCRIPT -->
 <script>
-for(let i=0;i<40;i++){
+for(let i=0;i<35;i++){
 let gold=document.createElement("div");
 gold.className="gold";
 gold.style.left=Math.random()*100+"vw";
-gold.style.animationDuration=(5+Math.random()*5)+"s";
+gold.style.animationDuration=(6+Math.random()*6)+"s";
 gold.style.opacity=Math.random();
 document.body.appendChild(gold);
 }
 </script>
 
-<!-- ====== SLIDE 1 ====== -->
-<section>
+<!-- HERO -->
+<section class="hero">
+<div class="moon"></div>
 <h1>Ramadhan Kareem</h1>
-<p>
-Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Bapak/Ibu
-untuk hadir dalam acara Buka Puasa Bersama.
-</p>
-
-<a href="#slide2" class="btn">Lihat Detail</a>
-
-<img src="omah.jpg" class="mosque">
+<p>Undangan Buka Puasa Bersama</p>
+<p><b>PT Pakar Corp Integrasi Utama</b></p>
+<button onclick="scrollToSection('detail')">Buka Undangan</button>
 </section>
 
-<!-- ====== SLIDE 2 ====== -->
-<section id="slide2">
-<h2>Undangan Buka Puasa Bersama</h2>
+<!-- DETAIL -->
+<section id="detail">
+<img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
 
-<div class="box">
-<p>
-Hari/Tanggal : Jumat, 20 Maret 2026<br><br>
-Waktu : 17.00 WIB - Selesai<br><br>
-Tempat : Omah Joglo
-</p>
+<h2>Detail Acara</h2>
+
+<div class="detail-box">
+📅 <b>Jumat, 6 Maret 2026</b>
 </div>
 
-<a href="#slide3" class="btn">Lihat Lokasi</a>
-
-<img src="omah.jpg" class="mosque">
-</section>
-
-<!-- ====== SLIDE 3 ====== -->
-<section id="slide3">
-<h2>Lokasi Acara</h2>
-
-<div class="box">
-<p>
-Klik tombol di bawah untuk membuka lokasi di Google Maps.
-</p>
-
-<a href="https://maps.google.com" target="_blank" class="btn">Buka Lokasi</a>
+<div class="detail-box">
+🕰 17.00 WIB – Selesai
 </div>
 
-<a href="#slide4" class="btn">RSVP</a>
+<div class="detail-box">
+📍 Omah Joglo Gendis
+</div>
 
-<img src="omah.jpg" class="mosque">
+<div class="detail-box">
+👗 Dresscode: Hitam & Coklat
+</div>
+
+<div class="countdown" id="countdown"></div>
+
+<button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
-<!-- ====== SLIDE 4 ====== -->
-<section id="slide4">
+<!-- LOKASI -->
+<section id="lokasi">
+<h2>Omah Joglo Gendis</h2>
+<img src="omah.jpg" style="max-width:85%; border-radius:20px;">
+<br>
+<a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
+<button>Lihat di Google Maps</button>
+</a>
+<button onclick="scrollToSection('rsvp')">RSVP</button>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
 <h2>Konfirmasi Kehadiran</h2>
 
-<div class="box">
-<p>Nama:</p>
-<input type="text" placeholder="Tulis nama..." style="padding:10px;border-radius:10px;border:1px solid #ccc;width:80%;max-width:300px;margin-top:10px;">
-<br><br>
-<button class="btn">✔ Hadir</button>
-<button class="btn" style="background:gray;">✖ Tidak Hadir</button>
-</div>
+<input type="text" id="nama" placeholder="Masukkan Nama Anda">
+<br>
 
-<a href="#slide5" class="btn">Penutup</a>
+<button class="rsvp-btn hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
+<button class="rsvp-btn tidak" onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
 
-<img src="omah.jpg" class="mosque">
+<p id="hasil" style="margin-top:20px;"></p>
 </section>
 
-<!-- ====== SLIDE 5 ====== -->
-<section id="slide5">
-<h2>Penutup</h2>
-
-<div class="box">
+<!-- PENUTUP -->
+<section>
+<h2>Terima Kasih</h2>
 <p>
-Merupakan suatu kehormatan bagi kami atas kehadiran Bapak/Ibu dalam kegiatan ini.
+Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
+Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
 </p>
-</div>
-
-<p style="font-size:14px;margin-top:40px;color:#888;">
-PT Pakar Corp Integrasi Utama<br>
+<p style="font-style:italic;">
+Semoga silaturahmi ini membawa keberkahan bagi kita semua.
+</p>
+<footer>
+PT Pakar Corp Integrasi Utama <br>
 2026
-</p>
-
-<img src="omah.jpg" class="mosque">
+</footer>
 </section>
+
+<script>
+
+/* Smooth show animation */
+var sections = document.querySelectorAll("section");
+window.addEventListener("scroll", function(){
+sections.forEach(sec=>{
+var position = sec.getBoundingClientRect().top;
+if(position < window.innerHeight - 100){
+sec.classList.add("show");
+}
+});
+});
+
+/* Scroll */
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+/* Countdown */
+var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
+setInterval(function() {
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("countdown").innerHTML =
+days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
+}, 1000);
+
+/* RSVP */
+function kirimRSVP(status){
+var nama = document.getElementById("nama").value;
+if(nama === ""){
+alert("Silakan isi nama terlebih dahulu.");
+return;
+}
+document.getElementById("hasil").innerHTML =
+"Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
+}
+
+</script>
 
 </body>
 </html>
