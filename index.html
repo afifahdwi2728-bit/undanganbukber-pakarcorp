@@ -1,21 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan Bukber Pakar Corp</title>
+<title>Undangan Bukber</title>
 
 <style>
-body{
+*{
 margin:0;
-font-family:'Georgia', serif;
-background:linear-gradient(180deg,#ffffff,#fff6e5,#fdecc8);
-color:#b8860b;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+background: linear-gradient(to bottom, #ffffff, #fff8e7);
 overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* SECTION */
+/* ====== EFFECT EMAS JATUH ====== */
+.gold{
+position:fixed;
+top:-10px;
+width:4px;
+height:4px;
+background:gold;
+border-radius:50%;
+animation:fall linear infinite;
+opacity:0.8;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh);
+}
+}
+
+/* ====== SECTION ====== */
 section{
 min-height:100vh;
 display:flex;
@@ -23,251 +45,171 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:8vw;
-position:relative;
-opacity:0;
-transform:translateY(40px);
-transition:1.5s ease;
-}
-
-section.show{
-opacity:1;
-transform:translateY(0);
-}
-
-h1{
-font-size:clamp(42px,7vw,80px);
-letter-spacing:3px;
-}
-
-h2{
-font-size:clamp(28px,5vw,48px);
-}
-
-p{
-font-size:clamp(16px,2.5vw,22px);
-max-width:750px;
-}
-
-/* HERO */
-.hero{
-background-image:url('bg bukber.jpeg');
-background-size:cover;
-background-position:center;
-color:white;
+padding:30px 20px;
 position:relative;
 }
 
-.hero::after{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
-z-index:0;
-}
-
-.hero *{
-position:relative;
-z-index:2;
-}
-
-/* Moon */
-.moon{
-position:absolute;
-top:10%;
-right:8%;
-width:80px;
-height:80px;
-background:radial-gradient(circle at 30% 30%, #fff6c2, #d4af37);
-border-radius:50%;
-box-shadow:0 0 30px gold;
-}
-
-.moon:after{
-content:"";
-position:absolute;
-top:0;
-left:25px;
-width:80px;
-height:80px;
-background:#000;
-border-radius:50%;
-}
-
-/* Mosque */
+/* ====== SILUET MASJID ====== */
 .mosque{
 position:absolute;
 bottom:0;
-left:0;
 width:100%;
-opacity:0.06;
-pointer-events:none;
+opacity:0.15;
 }
 
-/* Sparkle */
-.sparkle{
-position:fixed;
-width:6px;
-height:6px;
-background:gold;
-border-radius:50%;
-animation:float 6s infinite ease-in-out;
-opacity:0.5;
+/* ====== TEXT ====== */
+h1{
+font-size:clamp(28px,5vw,48px);
+color:#b8860b;
+margin-bottom:20px;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-100%{transform:translateY(0);}
+h2{
+font-size:clamp(22px,4vw,32px);
+color:#b8860b;
+margin-bottom:15px;
 }
 
-.countdown{
+p{
+font-size:clamp(16px,2.5vw,20px);
+max-width:700px;
+color:#444;
+line-height:1.6;
+}
+
+/* ====== BOX TIMBUL ====== */
+.box{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(212,175,55,0.25);
 margin-top:20px;
-font-weight:bold;
-font-size:clamp(16px,2.5vw,22px);
+max-width:800px;
 }
 
-input{
-padding:12px;
-border-radius:30px;
-border:1px solid #d4af37;
-width:clamp(200px,50%,350px);
-text-align:center;
-margin-top:15px;
-}
-
-.rsvp-btn{
-margin:10px;
-font-size:20px;
-padding:12px 25px;
-border-radius:30px;
-border:none;
-color:white;
-cursor:pointer;
-}
-
-.hadir{background:#28a745;}
-.tidak{background:#dc3545;}
-
-footer{
-font-size:14px;
-opacity:0.7;
+/* ====== BUTTON ====== */
+.btn{
 margin-top:30px;
+padding:12px 30px;
+background:linear-gradient(to right,#d4af37,#f1d77a);
+border:none;
+border-radius:30px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+text-decoration:none;
+display:inline-block;
+transition:0.3s;
 }
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:600px){
+section{
+padding:20px 15px;
+}
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="sparkle" style="top:20%; left:10%;"></div>
-<div class="sparkle" style="top:40%; left:80%;"></div>
-<div class="sparkle" style="top:70%; left:30%;"></div>
-
-<section class="hero">
-<div class="moon"></div>
-<h1>Ramadhan Kareem</h1>
-<p>Undangan Buka Puasa Bersama</p>
-<p><b>PT Pakar Corp Integrasi Utama</b></p>
-</section>
-
-<section>
-<img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
-<h2>Jumat, 6 Maret 2026</h2>
-<p>17.00 WIB – Selesai</p>
-<p><b>Dresscode: Hitam & Coklat</b></p>
-<div class="countdown" id="countdown"></div>
-</section>
-
-<section>
-<h2>Omah Joglo Gendis</h2>
-<img src="omah.jpg" style="max-width:85%; border-radius:20px;">
-<br>
-<a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
-<button style="margin-top:20px;background:linear-gradient(45deg,#d4af37,#f5d76e);padding:12px 30px;border-radius:30px;border:none;color:white;">Lihat di Google Maps</button>
-</a>
-</section>
-
-<section>
-<h2>Konfirmasi Kehadiran</h2>
-<input type="text" id="nama" placeholder="Masukkan Nama Anda">
-<br>
-<button class="rsvp-btn hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
-<button class="rsvp-btn tidak" onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
-<p id="hasil" style="margin-top:20px;"></p>
-</section>
-
-<section>
-<h2>Terima Kasih</h2>
-<p>
-Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
-Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
-</p>
-<footer>
-PT Pakar Corp Integrasi Utama <br>
-2026
-</footer>
-</section>
-
+<!-- EFFECT EMAS -->
 <script>
-
-/* Fade animation */
-var sections = document.querySelectorAll("section");
-window.addEventListener("scroll", function(){
-sections.forEach(sec=>{
-var position = sec.getBoundingClientRect().top;
-if(position < window.innerHeight - 100){
-sec.classList.add("show");
+for(let i=0;i<40;i++){
+let gold=document.createElement("div");
+gold.className="gold";
+gold.style.left=Math.random()*100+"vw";
+gold.style.animationDuration=(5+Math.random()*5)+"s";
+gold.style.opacity=Math.random();
+document.body.appendChild(gold);
 }
-});
-});
-
-/* Countdown */
-var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
-setInterval(function() {
-var now = new Date().getTime();
-var distance = countDownDate - now;
-var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-document.getElementById("countdown").innerHTML =
-days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
-}, 1000);
-
-/* RSVP */
-function kirimRSVP(status){
-var nama = document.getElementById("nama").value;
-if(nama === ""){
-alert("Silakan isi nama terlebih dahulu.");
-return;
-}
-document.getElementById("hasil").innerHTML =
-"Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
-}
-
-/* AUTO SCROLL PELAN TERUS JALAN */
-let autoScroll = true;
-
-function slowScroll(){
-if(!autoScroll) return;
-window.scrollBy(0, 1);
-requestAnimationFrame(slowScroll);
-}
-
-/* mulai 2 detik setelah buka */
-setTimeout(function(){
-slowScroll();
-},2000);
-
-/* stop kalau user scroll manual */
-window.addEventListener("wheel", ()=> autoScroll=false);
-window.addEventListener("touchstart", ()=> autoScroll=false);
-
 </script>
+
+<!-- ====== SLIDE 1 ====== -->
+<section>
+<h1>Ramadhan Kareem</h1>
+<p>
+Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Bapak/Ibu
+untuk hadir dalam acara Buka Puasa Bersama.
+</p>
+
+<a href="#slide2" class="btn">Lihat Detail</a>
+
+<img src="omah.jpg" class="mosque">
+</section>
+
+<!-- ====== SLIDE 2 ====== -->
+<section id="slide2">
+<h2>Undangan Buka Puasa Bersama</h2>
+
+<div class="box">
+<p>
+Hari/Tanggal : Jumat, 20 Maret 2026<br><br>
+Waktu : 17.00 WIB - Selesai<br><br>
+Tempat : Omah Joglo
+</p>
+</div>
+
+<a href="#slide3" class="btn">Lihat Lokasi</a>
+
+<img src="omah.jpg" class="mosque">
+</section>
+
+<!-- ====== SLIDE 3 ====== -->
+<section id="slide3">
+<h2>Lokasi Acara</h2>
+
+<div class="box">
+<p>
+Klik tombol di bawah untuk membuka lokasi di Google Maps.
+</p>
+
+<a href="https://maps.google.com" target="_blank" class="btn">Buka Lokasi</a>
+</div>
+
+<a href="#slide4" class="btn">RSVP</a>
+
+<img src="omah.jpg" class="mosque">
+</section>
+
+<!-- ====== SLIDE 4 ====== -->
+<section id="slide4">
+<h2>Konfirmasi Kehadiran</h2>
+
+<div class="box">
+<p>Nama:</p>
+<input type="text" placeholder="Tulis nama..." style="padding:10px;border-radius:10px;border:1px solid #ccc;width:80%;max-width:300px;margin-top:10px;">
+<br><br>
+<button class="btn">✔ Hadir</button>
+<button class="btn" style="background:gray;">✖ Tidak Hadir</button>
+</div>
+
+<a href="#slide5" class="btn">Penutup</a>
+
+<img src="omah.jpg" class="mosque">
+</section>
+
+<!-- ====== SLIDE 5 ====== -->
+<section id="slide5">
+<h2>Penutup</h2>
+
+<div class="box">
+<p>
+Merupakan suatu kehormatan bagi kami atas kehadiran Bapak/Ibu dalam kegiatan ini.
+</p>
+</div>
+
+<p style="font-size:14px;margin-top:40px;color:#888;">
+PT Pakar Corp Integrasi Utama<br>
+2026
+</p>
+
+<img src="omah.jpg" class="mosque">
+</section>
 
 </body>
 </html>
