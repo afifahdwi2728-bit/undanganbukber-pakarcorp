@@ -15,7 +15,6 @@ scroll-behavior:smooth;
 overflow-x:hidden;
 }
 
-/* SECTION */
 section{
 height:100vh;
 display:flex;
@@ -35,23 +34,10 @@ opacity:1;
 transform:translateY(0);
 }
 
-h1{
-font-size:65px;
-letter-spacing:3px;
-margin-bottom:10px;
-}
+h1{font-size:65px;}
+h2{font-size:40px;}
+p{font-size:20px;}
 
-h2{
-font-size:40px;
-margin:10px 0;
-}
-
-p{
-font-size:20px;
-margin:6px 0;
-}
-
-/* BUTTON */
 button{
 background:linear-gradient(45deg,#d4af37,#f5d76e);
 color:white;
@@ -60,24 +46,23 @@ padding:14px 35px;
 border-radius:40px;
 cursor:pointer;
 font-weight:bold;
-margin-top:25px;
-transition:0.4s;
-box-shadow:0 6px 20px rgba(212,175,55,0.4);
-font-size:16px;
+margin-top:20px;
+transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.1);
-box-shadow:0 8px 30px rgba(212,175,55,0.8);
+transform:scale(1.08);
 }
 
-.countdown{
-font-size:24px;
-margin-top:20px;
-font-weight:bold;
+input{
+padding:12px;
+border-radius:30px;
+border:1px solid #d4af37;
+width:250px;
+text-align:center;
+margin-top:15px;
 }
 
-/* HERO */
 .hero{
 background-image:url('bg bukber.jpeg');
 background-size:cover;
@@ -92,22 +77,17 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.55);
+background:rgba(0,0,0,0.5);
 z-index:0;
 }
 
-.hero *{
-position:relative;
-z-index:2;
-}
+.hero *{position:relative; z-index:2;}
 
-/* LOGO */
 .logo{
 width:120px;
 margin-bottom:20px;
 }
 
-/* SILUET MASJID */
 .mosque{
 position:absolute;
 bottom:0;
@@ -117,34 +97,21 @@ opacity:0.15;
 z-index:0;
 }
 
-/* BULAN */
-.moon{
-font-size:80px;
-animation:float 3s ease-in-out infinite;
+.countdown{
+font-size:22px;
+margin-top:15px;
+font-weight:bold;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
-100%{transform:translateY(0);}
+.rsvp-btn{
+margin:10px;
+font-size:22px;
+padding:12px 25px;
+border-radius:30px;
 }
 
-/* PARTIKEL EMAS */
-.sparkle{
-position:absolute;
-width:5px;
-height:5px;
-background:gold;
-border-radius:50%;
-animation:spark 6s infinite;
-opacity:0.6;
-}
-
-@keyframes spark{
-0%{transform:translateY(0); opacity:0;}
-50%{opacity:1;}
-100%{transform:translateY(-600px); opacity:0;}
-}
+.hadir{background:#28a745;}
+.tidak{background:#dc3545;}
 
 footer{
 font-size:14px;
@@ -156,22 +123,14 @@ margin-top:30px;
 
 <body>
 
-<!-- BACKSOUND -->
-<audio id="bgm" loop>
-<source src="musik.mp3" type="audio/mpeg">
-</audio>
-
-<!-- SLIDE 1 -->
 <section class="hero">
 <img src="logo.png" class="logo">
-<div class="moon">🌙</div>
 <h1>Ramadhan Kareem</h1>
-<p style="font-size:24px;">Undangan Buka Puasa Bersama</p>
-<p style="font-size:22px;"><b>PT Pakar Corp Integrasi Utama</b></p>
-<button onclick="startMusic()">Buka Undangan</button>
+<p>Undangan Buka Puasa Bersama</p>
+<p><b>PT Pakar Corp Integrasi Utama</b></p>
+<button onclick="scrollToSection('detail')">Buka Undangan</button>
 </section>
 
-<!-- SLIDE 2 -->
 <section id="detail">
 <img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
 <h2>Jumat, 6 Maret 2026</h2>
@@ -181,7 +140,6 @@ margin-top:30px;
 <button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
-<!-- SLIDE 3 -->
 <section id="lokasi">
 <h2>Omah Joglo Gendis</h2>
 <img src="omah.jpg" style="max-width:85%; border-radius:20px;">
@@ -192,23 +150,27 @@ margin-top:30px;
 <button onclick="scrollToSection('rsvp')">RSVP</button>
 </section>
 
-<!-- SLIDE 4 -->
 <section id="rsvp">
 <h2>Konfirmasi Kehadiran</h2>
-<a href="https://wa.me/628XXXXXXXXXX?text=Halo,%20saya%20akan%20hadir%20di%20acara%20Bukber%20Pakar%20Corp" target="_blank">
-<button>RSVP via WhatsApp</button>
-</a>
-<button onclick="scrollToSection('penutup')">Lanjut</button>
+
+<input type="text" id="nama" placeholder="Masukkan Nama Anda">
+
+<br>
+
+<button class="rsvp-btn hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
+<button class="rsvp-btn tidak" onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
+
+<p id="hasil" style="margin-top:20px;"></p>
+
 </section>
 
-<!-- SLIDE 5 -->
-<section id="penutup">
+<section>
 <h2>Terima Kasih</h2>
-<p style="max-width:700px; line-height:1.6;">
+<p>
 Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
 Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
 </p>
-<p style="font-style:italic; font-size:18px;">
+<p style="font-style:italic;">
 Semoga silaturahmi ini membawa keberkahan bagi kita semua.
 </p>
 <footer>
@@ -223,11 +185,6 @@ function scrollToSection(id){
 document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-function startMusic(){
-document.getElementById("bgm").play();
-scrollToSection('detail');
-}
-
 var sections = document.querySelectorAll("section");
 window.addEventListener("scroll", function(){
 sections.forEach(sec=>{
@@ -238,7 +195,6 @@ sec.classList.add("show");
 });
 });
 
-/* COUNTDOWN */
 var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
 setInterval(function() {
 var now = new Date().getTime();
@@ -252,12 +208,17 @@ document.getElementById("countdown").innerHTML =
 days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
 }, 1000);
 
+function kirimRSVP(status){
+var nama = document.getElementById("nama").value;
+if(nama === ""){
+alert("Silakan isi nama terlebih dahulu.");
+return;
+}
+document.getElementById("hasil").innerHTML =
+"Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
+}
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
