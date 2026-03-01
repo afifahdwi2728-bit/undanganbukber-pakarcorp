@@ -7,129 +7,147 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  background: linear-gradient(135deg, #3e2723, #1b1b1b);
-  color: white;
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0f0f0f, #2c1b0f);
+    color: #f5f5f5;
+    text-align:center;
+    overflow-x:hidden;
 }
 
-.cover {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.container {
+    padding:60px 20px;
+    animation: fadeIn 2s ease-in-out;
 }
 
-button {
-  padding: 12px 25px;
-  background-color: #8d6e63;
-  border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 20px;
+.logo {
+    width:120px;
+    margin-bottom:20px;
 }
 
-button:hover {
-  background-color: #5d4037;
+h1 {
+    font-size:40px;
+    margin:10px 0;
+    color:#d4af37;
 }
 
-.content {
-  display: none;
-  padding: 40px 20px;
+h2 {
+    font-weight:300;
+    letter-spacing:3px;
+    margin-bottom:30px;
 }
 
 .card {
-  background: rgba(0,0,0,0.6);
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 500px;
-  margin: auto;
+    background: rgba(255,255,255,0.05);
+    padding:30px;
+    border-radius:15px;
+    max-width:500px;
+    margin:0 auto;
+    backdrop-filter: blur(8px);
 }
 
 .countdown {
-  font-size: 20px;
-  margin: 20px 0;
-  font-weight: bold;
+    font-size:22px;
+    margin:20px 0;
+    color:#d4af37;
 }
 
-.dresscode {
-  margin-top: 20px;
-  font-style: italic;
+.button {
+    display:inline-block;
+    padding:12px 25px;
+    background:#6b4226;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+.button:hover {
+    background:#8b5e3c;
+}
+
+.moon {
+    font-size:60px;
+    margin-bottom:10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.mosque {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    opacity:0.1;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="cover" id="cover">
-  <h1>Undangan Buka Puasa Bersama</h1>
-  <p>Pakar Corp</p>
-  <button onclick="openInvite()">Buka Undangan</button>
+<!-- Musik -->
+<audio autoplay loop controls style="position:fixed; bottom:10px; right:10px;">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<img src="LOGO-LINK-KAMU.png" class="logo">
+
+<div class="container">
+
+<div class="moon">🌙</div>
+
+<h1>Ramadhan Kareem</h1>
+<h2>Buka Puasa Bersama Pakar Corp</h2>
+
+<div class="card">
+<p><b>Jumat, 6 Maret 2026</b></p>
+<p>Omah Joglo Gendis, Bojongsari</p>
+
+<div class="countdown" id="countdown"></div>
+
+<p><b>Dresscode:</b> Hitam & Coklat</p>
+
+<a class="button" 
+href="https://wa.me/628XXXXXXXXXX?text=Assalamualaikum,%20saya%20akan%20hadir%20di%20Bukber%20Pakar%20Corp"
+target="_blank">
+RSVP via WhatsApp
+</a>
+
+</div>
 </div>
 
-<div class="content" id="content">
-  <div class="card">
-    <h2>Assalamu’alaikum Wr. Wb.</h2>
-
-    <p>
-      Dengan hormat, kami mengundang Bapak/Ibu untuk hadir dalam acara:
-    </p>
-
-    <h3>Buka Puasa Bersama</h3>
-
-    <p>
-      📅 Jumat, 6 Maret 2026<br>
-      🕔 17.00 WIB – selesai<br>
-      📍 Omah Joglo Gendis, Bojongsari
-    </p>
-
-    <div class="countdown" id="countdown"></div>
-
-    <div class="dresscode">
-      👔 Dresscode: Hitam & Coklat
-    </div>
-
-    <br>
-
-    <button onclick="rsvpWA()">Konfirmasi Kehadiran (RSVP)</button>
-  </div>
-</div>
+<img src="https://i.ibb.co/7V4L1vS/mosque-silhouette.png" class="mosque">
 
 <script>
-function openInvite() {
-  document.getElementById("cover").style.display = "none";
-  document.getElementById("content").style.display = "block";
-}
-
-// Countdown
-var eventDate = new Date("March 6, 2026 17:00:00").getTime();
+var countDownDate = new Date("Mar 6, 2026 17:30:00").getTime();
 
 var x = setInterval(function() {
+
   var now = new Date().getTime();
-  var distance = eventDate - now;
+  var distance = countDownDate - now;
 
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
   document.getElementById("countdown").innerHTML =
-    "Menuju Acara: " + days + " Hari " + hours + " Jam " + minutes + " Menit";
+  days + " Hari " + hours + " Jam " + minutes + " Menit";
 
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("countdown").innerHTML = "Acara Sedang Berlangsung";
   }
 }, 1000);
-
-// RSVP WA
-function rsvpWA() {
-  var phone = "628XXXXXXXXXX"; // GANTI DENGAN NOMOR KAMU
-  var message = "Assalamu’alaikum, saya akan hadir di acara Bukber 6 Maret 2026.";
-  window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message));
-}
 </script>
 
 </body>
