@@ -6,11 +6,10 @@
 <title>Undangan Bukber Pakar Corp</title>
 
 <style>
-
 body{
 margin:0;
 font-family:'Georgia', serif;
-background:linear-gradient(180deg,#ffffff,#f9f3e6,#fff8dc);
+background:linear-gradient(180deg,#ffffff,#fff8e7,#fdf1d3);
 color:#b8860b;
 scroll-behavior:smooth;
 overflow-x:hidden;
@@ -23,9 +22,10 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
+padding:30px;
+position:relative;
 opacity:0;
-transform:translateY(30px);
+transform:translateY(40px);
 transition:1.2s ease;
 }
 
@@ -35,40 +35,43 @@ transform:translateY(0);
 }
 
 h1{
-font-size:40px;
+font-size:60px;
+letter-spacing:3px;
 margin-bottom:10px;
 }
 
 h2{
-font-size:28px;
+font-size:38px;
 margin:10px 0;
 }
 
 p{
-font-size:18px;
+font-size:20px;
+margin:6px 0;
 }
 
 button{
 background:linear-gradient(45deg,#d4af37,#f5d76e);
 color:white;
 border:none;
-padding:12px 30px;
+padding:14px 35px;
 border-radius:40px;
 cursor:pointer;
 font-weight:bold;
-margin-top:20px;
+margin-top:25px;
 transition:0.4s;
-box-shadow:0 4px 15px rgba(212,175,55,0.4);
+box-shadow:0 6px 20px rgba(212,175,55,0.4);
+font-size:16px;
 }
 
 button:hover{
-transform:scale(1.08);
-box-shadow:0 6px 25px rgba(212,175,55,0.7);
+transform:scale(1.1);
+box-shadow:0 8px 30px rgba(212,175,55,0.8);
 }
 
 .countdown{
-font-size:22px;
-margin-top:15px;
+font-size:24px;
+margin-top:20px;
 font-weight:bold;
 }
 
@@ -79,8 +82,41 @@ margin-top:20px;
 box-shadow:0 10px 30px rgba(212,175,55,0.3);
 }
 
+/* HERO SECTION */
+.hero{
+background-image:url('BACKGROUND.jpg');
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+z-index:0;
+}
+
+.hero *{
+position:relative;
+z-index:2;
+}
+
+.mosque{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+opacity:0.07;
+z-index:0;
+}
+
 .moon{
-font-size:60px;
+font-size:70px;
 animation:float 3s ease-in-out infinite;
 }
 
@@ -90,25 +126,31 @@ animation:float 3s ease-in-out infinite;
 100%{transform:translateY(0);}
 }
 
+footer{
+font-size:14px;
+opacity:0.7;
+margin-top:30px;
+}
 </style>
 </head>
 
 <body>
 
 <!-- SLIDE 1 -->
-<section>
+<section class="hero">
 <div class="moon">🌙</div>
 <h1>Ramadhan Kareem</h1>
-<p>Undangan Buka Puasa Bersama</p>
-<p><b>PT Pakar Corp Integrasi Utama</b></p>
+<p style="font-size:24px;">Undangan Buka Puasa Bersama</p>
+<p style="font-size:22px;"><b>PT Pakar Corp Integrasi Utama</b></p>
 <button onclick="scrollToSection('detail')">Buka Undangan</button>
 </section>
 
 <!-- SLIDE 2 -->
 <section id="detail">
+<img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
 <h2>Jumat, 6 Maret 2026</h2>
 <p>17.00 WIB – Selesai</p>
-<p>Dresscode: Hitam & Coklat</p>
+<p><b>Dresscode: Hitam & Coklat</b></p>
 <div class="countdown" id="countdown"></div>
 <button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
@@ -130,6 +172,27 @@ animation:float 3s ease-in-out infinite;
 <a href="https://wa.me/628XXXXXXXXXX?text=Halo,%20saya%20akan%20hadir%20di%20acara%20Bukber%20Pakar%20Corp" target="_blank">
 <button>RSVP via WhatsApp</button>
 </a>
+<button onclick="scrollToSection('penutup')">Lanjut</button>
+</section>
+
+<!-- SLIDE 5 PENUTUP -->
+<section id="penutup">
+<h2>Terima Kasih</h2>
+
+<p style="max-width:700px; line-height:1.6;">
+Merupakan suatu kehormatan dan kebahagiaan bagi kami atas kehadiran 
+Bapak/Ibu dalam kegiatan Buka Puasa Bersama ini.
+</p>
+
+<p style="font-style:italic; font-size:18px;">
+Semoga silaturahmi ini membawa keberkahan bagi kita semua.
+</p>
+
+<footer>
+PT Pakar Corp Integrasi Utama <br>
+2026
+</footer>
+
 </section>
 
 <script>
@@ -139,7 +202,6 @@ document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
 var sections = document.querySelectorAll("section");
-
 window.addEventListener("scroll", function(){
 sections.forEach(sec=>{
 var position = sec.getBoundingClientRect().top;
