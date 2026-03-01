@@ -6,16 +6,20 @@
 <title>Undangan Bukber Pakar Corp</title>
 
 <style>
+html {
+scroll-snap-type: y mandatory;
+scroll-behavior: smooth;
+}
+
 body{
 margin:0;
 font-family:'Georgia', serif;
 background:linear-gradient(180deg,#ffffff,#fff6e5,#fdecc8);
 color:#b8860b;
-scroll-behavior:smooth;
 overflow-x:hidden;
 }
 
-/* Smooth fade animation */
+/* SECTION STYLE */
 section{
 min-height:100vh;
 display:flex;
@@ -28,6 +32,7 @@ position:relative;
 opacity:0;
 transform:translateY(40px);
 transition:1.2s ease;
+scroll-snap-align:start;
 }
 
 section.show{
@@ -36,14 +41,12 @@ transform:translateY(0);
 }
 
 h1{
-font-size:clamp(40px,7vw,80px);
-margin-bottom:10px;
-letter-spacing:2px;
+font-size:clamp(42px,7vw,80px);
+letter-spacing:3px;
 }
 
 h2{
 font-size:clamp(28px,5vw,48px);
-margin-bottom:10px;
 }
 
 p{
@@ -119,25 +122,25 @@ background:#000;
 border-radius:50%;
 }
 
-/* Mosque Silhouette */
+/* Mosque silhouette */
 .mosque{
 position:absolute;
 bottom:0;
 left:0;
 width:100%;
-opacity:0.07;
+opacity:0.06;
 pointer-events:none;
 }
 
-/* Sparkle Animation */
+/* Sparkle */
 .sparkle{
 position:fixed;
-width:5px;
-height:5px;
+width:6px;
+height:6px;
 background:gold;
 border-radius:50%;
 animation:float 6s infinite ease-in-out;
-opacity:0.6;
+opacity:0.5;
 }
 
 @keyframes float{
@@ -181,10 +184,12 @@ margin-top:30px;
 
 <body>
 
+<!-- Sparkles -->
 <div class="sparkle" style="top:20%; left:10%;"></div>
 <div class="sparkle" style="top:40%; left:80%;"></div>
 <div class="sparkle" style="top:70%; left:30%;"></div>
 
+<!-- HERO -->
 <section class="hero">
 <div class="moon"></div>
 <h1>Ramadhan Kareem</h1>
@@ -193,6 +198,7 @@ margin-top:30px;
 <button onclick="scrollToSection('detail')">Buka Undangan</button>
 </section>
 
+<!-- DETAIL -->
 <section id="detail">
 <img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
 <h2>Jumat, 6 Maret 2026</h2>
@@ -202,6 +208,7 @@ margin-top:30px;
 <button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
+<!-- LOKASI -->
 <section id="lokasi">
 <h2>Omah Joglo Gendis</h2>
 <img src="omah.jpg" style="max-width:85%; border-radius:20px;">
@@ -212,6 +219,7 @@ margin-top:30px;
 <button onclick="scrollToSection('rsvp')">RSVP</button>
 </section>
 
+<!-- RSVP -->
 <section id="rsvp">
 <h2>Konfirmasi Kehadiran</h2>
 
@@ -225,6 +233,7 @@ margin-top:30px;
 <p id="hasil" style="margin-top:20px;"></p>
 </section>
 
+<!-- PENUTUP -->
 <section>
 <h2>Terima Kasih</h2>
 <p>
@@ -241,10 +250,8 @@ PT Pakar Corp Integrasi Utama <br>
 </section>
 
 <script>
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
 
+/* Smooth show animation */
 var sections = document.querySelectorAll("section");
 window.addEventListener("scroll", function(){
 sections.forEach(sec=>{
@@ -255,6 +262,12 @@ sec.classList.add("show");
 });
 });
 
+/* Scroll to section */
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+/* Countdown */
 var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
 setInterval(function() {
 var now = new Date().getTime();
@@ -268,6 +281,7 @@ document.getElementById("countdown").innerHTML =
 days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
 }, 1000);
 
+/* RSVP */
 function kirimRSVP(status){
 var nama = document.getElementById("nama").value;
 if(nama === ""){
@@ -277,6 +291,29 @@ return;
 document.getElementById("hasil").innerHTML =
 "Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
 }
+
+/* Auto snap scroll */
+let slides = document.querySelectorAll("section");
+let currentSlide = 0;
+let autoMode = true;
+
+function snapScroll(){
+if(!autoMode) return;
+
+currentSlide++;
+if(currentSlide >= slides.length){
+currentSlide = slides.length - 1;
+return;
+}
+
+slides[currentSlide].scrollIntoView({behavior:"smooth"});
+}
+
+setInterval(snapScroll, 5000);
+
+window.addEventListener("wheel", function(){ autoMode = false; });
+window.addEventListener("touchstart", function(){ autoMode = false; });
+
 </script>
 
 </body>
