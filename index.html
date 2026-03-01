@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,146 +7,111 @@
 
 <style>
 body {
-    margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to bottom, #0f0f0f, #2c1b0f);
-    color: #f5f5f5;
-    text-align:center;
-    overflow-x:hidden;
+margin:0;
+font-family: 'Georgia', serif;
+background:#0d0d0d;
+color:#d4af37;
+scroll-behavior:smooth;
 }
 
-.container {
-    padding:60px 20px;
-    animation: fadeIn 2s ease-in-out;
+section{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
 }
 
-.logo {
-    width:120px;
-    margin-bottom:20px;
+h1,h2{margin:10px;}
+
+button{
+background:#d4af37;
+color:black;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-weight:bold;
+margin-top:20px;
 }
 
-h1 {
-    font-size:40px;
-    margin:10px 0;
-    color:#d4af37;
+img{
+max-width:80%;
+border-radius:15px;
+margin-top:20px;
 }
 
-h2 {
-    font-weight:300;
-    letter-spacing:3px;
-    margin-bottom:30px;
+.countdown{
+font-size:24px;
+margin-top:15px;
 }
 
-.card {
-    background: rgba(255,255,255,0.05);
-    padding:30px;
-    border-radius:15px;
-    max-width:500px;
-    margin:0 auto;
-    backdrop-filter: blur(8px);
+.fade{
+animation:fade 2s ease-in;
 }
 
-.countdown {
-    font-size:22px;
-    margin:20px 0;
-    color:#d4af37;
-}
-
-.button {
-    display:inline-block;
-    padding:12px 25px;
-    background:#6b4226;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    margin-top:20px;
-    transition:0.3s;
-}
-
-.button:hover {
-    background:#8b5e3c;
-}
-
-.moon {
-    font-size:60px;
-    margin-bottom:10px;
-    animation: float 3s ease-in-out infinite;
-}
-
-.mosque {
-    position:fixed;
-    bottom:0;
-    width:100%;
-    opacity:0.1;
-}
-
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
-}
-
-@keyframes float {
-    0% {transform: translateY(0);}
-    50% {transform: translateY(-10px);}
-    100% {transform: translateY(0);}
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Musik -->
-<audio autoplay loop controls style="position:fixed; bottom:10px; right:10px;">
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<!-- SLIDE 1 -->
+<section class="fade">
+<h1>🌙 Ramadhan Kareem</h1>
+<h2>Undangan Buka Puasa Bersama</h2>
+<p>PT Pakar Corp Integrasi Utama</p>
+<button onclick="document.getElementById('detail').scrollIntoView()">Buka Undangan</button>
+</section>
 
-<img src="LOGO-LINK-KAMU.png" class="logo">
-
-<div class="container">
-
-<div class="moon">🌙</div>
-
-<h1>Ramadhan Kareem</h1>
-<h2>Buka Puasa Bersama Pakar Corp</h2>
-
-<div class="card">
-<p><b>Jumat, 6 Maret 2026</b></p>
-<p>Omah Joglo Gendis, Bojongsari</p>
-
+<!-- SLIDE 2 -->
+<section id="detail" class="fade">
+<h2>Jumat, 6 Maret 2026</h2>
+<p>17.00 WIB - Selesai</p>
+<p>Dresscode: Hitam & Coklat</p>
 <div class="countdown" id="countdown"></div>
+<button onclick="document.getElementById('lokasi').scrollIntoView()">Lihat Lokasi</button>
+</section>
 
-<p><b>Dresscode:</b> Hitam & Coklat</p>
-
-<a class="button" 
-href="https://wa.me/628XXXXXXXXXX?text=Assalamualaikum,%20saya%20akan%20hadir%20di%20Bukber%20Pakar%20Corp"
-target="_blank">
-RSVP via WhatsApp
+<!-- SLIDE 3 -->
+<section id="lokasi" class="fade">
+<h2>Omah Joglo Gendis</h2>
+<img src="https://source.unsplash.com/600x400/?joglo" alt="Omah Joglo">
+<br>
+<a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
+<button>Lihat di Google Maps</button>
 </a>
+<button onclick="document.getElementById('rsvp').scrollIntoView()">RSVP</button>
+</section>
 
-</div>
-</div>
-
-<img src="https://i.ibb.co/7V4L1vS/mosque-silhouette.png" class="mosque">
+<!-- SLIDE 4 -->
+<section id="rsvp" class="fade">
+<h2>Konfirmasi Kehadiran</h2>
+<a href="https://wa.me/628XXXXXXXXXX?text=Halo,%20saya%20akan%20hadir%20di%20acara%20Bukber%20Pakar%20Corp" target="_blank">
+<button>RSVP via WhatsApp</button>
+</a>
+</section>
 
 <script>
-var countDownDate = new Date("Mar 6, 2026 17:30:00").getTime();
-
+var countDownDate = new Date("March 6, 2026 17:00:00").getTime();
 var x = setInterval(function() {
-
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-  document.getElementById("countdown").innerHTML =
-  days + " Hari " + hours + " Jam " + minutes + " Menit";
-
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "Acara Sedang Berlangsung";
-  }
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+document.getElementById("countdown").innerHTML =
+days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
+if (distance < 0) {
+clearInterval(x);
+document.getElementById("countdown").innerHTML = "Acara Dimulai";
+}
 }, 1000);
 </script>
 
