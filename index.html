@@ -6,7 +6,6 @@
 <title>Undangan Bukber Pakar Corp</title>
 
 <style>
-html{scroll-behavior:smooth;}
 body{
 margin:0;
 font-family:'Georgia', serif;
@@ -15,95 +14,52 @@ color:#b8860b;
 overflow-x:hidden;
 }
 
-/* ================= COVER AMPL0P ================= */
-#cover{
-position:fixed;
-inset:0;
-background:linear-gradient(180deg,#6b3f1d,#b8860b);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-transition:1s ease;
-}
-#cover.hide{
-opacity:0;
-pointer-events:none;
-}
-.envelope{
-background:#8b5a2b;
-padding:50px 40px;
-border-radius:18px;
-box-shadow:0 30px 60px rgba(0,0,0,.45);
-text-align:center;
-color:#fff;
-animation:float 4s ease-in-out infinite;
-}
-.envelope p{
-letter-spacing:2px;
-font-size:14px;
-opacity:.85;
-}
-.envelope h2{
-margin:10px 0 20px;
-font-size:28px;
-}
-.envelope button{
-background:#d4af37;
-color:white;
-border:none;
-padding:14px 34px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-}
-
-/* ================= SECTION ================= */
 section{
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
 text-align:center;
-padding:5vw;
-position:relative;
-opacity:0;
-transform:translateY(40px);
-transition:1.2s ease;
+padding:70px 6vw;
 }
-section.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* FULL HEIGHT ONLY HERO & DETAIL */
-.hero,#detail{min-height:100vh;}
 
 h1{font-size:clamp(42px,7vw,80px);}
-h2{font-size:clamp(26px,4.5vw,44px);}
-p{font-size:clamp(15px,2.4vw,21px);margin:6px 0;}
+h2{font-size:clamp(26px,5vw,44px);}
+p{font-size:clamp(15px,2.5vw,20px);max-width:700px;}
 
-/* ================= BUTTON ================= */
 button{
 background:linear-gradient(45deg,#d4af37,#f5d76e);
 color:white;
 border:none;
-padding:13px 34px;
+padding:14px 34px;
 border-radius:40px;
 cursor:pointer;
 font-weight:bold;
-margin-top:18px;
-transition:.4s;
-box-shadow:0 0 15px rgba(212,175,55,.45);
-}
-button:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px rgba(212,175,55,.85);
+margin-top:20px;
+box-shadow:0 0 18px rgba(212,175,55,.5);
 }
 
-/* ================= HERO ================= */
+/* AMPLop */
+#cover{
+min-height:100vh;
+justify-content:center;
+background:#6b4a2b;
+color:white;
+}
+.envelope{
+width:260px;
+height:180px;
+background:#8b5a2b;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+
+/* HERO */
 .hero{
-background:url('bg bukber.jpeg') center/cover no-repeat;
+min-height:100vh;
+background:url('bg bukber.jpeg') center/cover;
 color:white;
 position:relative;
 }
@@ -113,235 +69,105 @@ position:absolute;
 inset:0;
 background:rgba(0,0,0,.55);
 }
-.hero *{position:relative;z-index:2;}
+.hero *{position:relative}
 
-/* MOON */
-.moon{
-position:absolute;
-top:10%;
-right:8%;
-width:80px;height:80px;
-background:radial-gradient(circle at 30% 30%,#fff6c2,#d4af37);
-border-radius:50%;
-box-shadow:0 0 30px gold;
-}
-.moon::after{
-content:"";
-position:absolute;
-left:25px;
-width:80px;height:80px;
-background:#000;
-border-radius:50%;
-}
-
-/* ================= SAVE THE DATE ================= */
-.save-date{
-position:absolute;
-top:6%;
-left:50%;
-transform:translateX(-50%) rotate(-3deg);
-font-family:'Brush Script MT','Segoe Script',cursive;
-font-size:clamp(48px,8vw,120px);
-color:rgba(212,175,55,.32);
-pointer-events:none;
-}
-
-/* MOBILE FIX SAVE DATE */
-@media(max-width:768px){
-.save-date{top:12%;font-size:clamp(42px,12vw,90px);}
-}
-
-/* ================= EVENT BOX GLASS ================= */
-.event-box{
-background:rgba(255,255,255,.28);
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
+/* GLASS BOX */
+.glass{
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(10px);
 border-radius:28px;
-padding:28px 38px;
-margin-top:32px;
-border:1px solid rgba(255,255,255,.35);
-box-shadow:0 20px 45px rgba(0,0,0,.12);
-max-width:520px;
-}
-.event-box h2{color:#7a5a16;}
-.event-box p{color:#5f4a12;}
-.dresscode{font-weight:bold;color:#6b5015;}
-
-/* ================= MOSQUE ================= */
-.mosque{
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-opacity:.06;
-pointer-events:none;
+padding:28px 24px;
+box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
 
-/* ================= DIVIDER ================= */
-.divider{
-width:80px;height:2px;
-background:linear-gradient(90deg,transparent,#d4af37,transparent);
-margin:14px auto 26px;
-}
-
-/* ================= RSVP FIX JARAK ================= */
-#rsvp{
-padding-top:60px;
-padding-bottom:60px;
-}
-
-/* ================= SPARKLE ================= */
-.sparkle{
-position:fixed;
-width:6px;height:6px;
-background:gold;
-border-radius:50%;
-animation:float 6s infinite ease-in-out;
-opacity:.5;
-}
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-100%{transform:translateY(0);}
+/* BUTTONS */
+.hadir{background:#28a745;}
+.tidak{background:#dc3545;}
+input{
+padding:12px;
+border-radius:30px;
+border:1px solid #d4af37;
+width:80%;
+max-width:320px;
+text-align:center;
+margin-top:15px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== COVER ===== -->
-<div id="cover">
+<!-- COVER -->
+<section id="cover">
   <div class="envelope">
-    <p>Undangan Buka Puasa Bersama</p>
-    <h2>PT Pakar Corp</h2>
-    <button onclick="openInvitation()">Buka Undangan</button>
+    <button onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+      Buka Undangan
+    </button>
   </div>
-</div>
-
-<div class="sparkle" style="top:20%;left:10%;"></div>
-<div class="sparkle" style="top:40%;left:80%;"></div>
+</section>
 
 <!-- HERO -->
-<section class="hero">
-<div class="moon"></div>
-<h1>Ramadhan Kareem</h1>
-<p>Undangan Buka Puasa Bersama</p>
-<p><b>PT Pakar Corp Integrasi Utama</b></p>
-<button onclick="scrollToSection('detail')">Lihat Detail</button>
+<section id="hero" class="hero">
+  <h1>Ramadhan Kareem</h1>
+  <p>Undangan Buka Puasa Bersama</p>
+  <p><b>PT Pakar Corp Integrasi Utama</b></p>
 </section>
 
 <!-- DETAIL -->
-<section id="detail">
-<div class="save-date">Save The Date</div>
-<img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
-
-<div class="event-box">
-<h2>Jumat, 6 Maret 2026</h2>
-<p>17.00 WIB – Selesai</p>
-<p class="dresscode">Dresscode: Hitam & Coklat</p>
-</div>
-
-<button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
+<section id="detail" style="padding:50px 6vw 40px;">
+  <div class="glass">
+    <h2>Jumat, 6 Maret 2026</h2>
+    <p>17.00 WIB – Selesai</p>
+    <p><b>Dresscode: Hitam & Coklat</b></p>
+  </div>
+  <button onclick="document.getElementById('lokasi').scrollIntoView({behavior:'smooth'})">
+    Lihat Lokasi
+  </button>
 </section>
 
 <!-- LOKASI -->
-<section id="lokasi">
-<p style="letter-spacing:3px;opacity:.6;">Lokasi Acara</p>
-<h2>Omah Joglo Gendis</h2>
-<div class="divider"></div>
-<img src="omah.jpg" style="max-width:85%;border-radius:20px;">
-<br>
-<a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
-<button>Lihat di Google Maps</button>
-</a>
-<button onclick="scrollToSection('rsvp')">RSVP</button>
+<section id="lokasi" style="padding:40px 6vw 60px;">
+  <p style="letter-spacing:3px;opacity:.5;">Lokasi Acara</p>
+  <h2>Omah Joglo Gendis</h2>
+  <img src="omah.jpg" style="width:90%;max-width:520px;border-radius:24px;margin:20px 0;">
+  <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
+    <button>Lihat di Google Maps</button>
+  </a>
 </section>
 
 <!-- RSVP -->
-<section id="rsvp">
-<h2>Konfirmasi Kehadiran</h2>
-<input type="text" id="nama" placeholder="Masukkan Nama Anda" style="padding:12px;border-radius:30px;border:1px solid #d4af37;">
-<br>
-<button onclick="kirimRSVP('Hadir')">✔ Hadir</button>
-<button onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
-<p id="hasil"></p>
+<section id="rsvp" style="padding:50px 6vw;">
+  <h2>Konfirmasi Kehadiran</h2>
+  <input type="text" id="nama" placeholder="Masukkan Nama Anda">
+  <br>
+  <button class="hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
+  <button class="tidak" onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
+  <p id="hasil" style="margin-top:20px;"></p>
 </section>
 
-<!-- PENUTUP -->
-<section id="penutup" style="
-  min-height:auto;
-  padding:70px 6vw 90px;
-">
-  <div style="
-  font-family:'Brush Script MT',cursive;
-  font-size:44px;
-  color:rgba(212,175,55,.2);
-  margin-bottom:10px;
-">
-  Ramadhan Kareem
-</div>
+<!-- TERIMA KASIH -->
+<section style="padding:60px 6vw 90px;">
   <h2>Terima Kasih</h2>
-
-  <div style="
-    width:80px;
-    height:2px;
-    background:linear-gradient(to right,transparent,#d4af37,transparent);
-    margin:18px auto 28px;
-  "></div>
-
-  <p style="max-width:600px;opacity:.85;">
+  <p>
     Merupakan suatu kehormatan dan kebahagiaan bagi kami
-    apabila Bapak/Ibu/Saudara/i berkenan hadir dan
-    berbuka puasa bersama.
+    apabila Bapak/Ibu berkenan hadir.
   </p>
-
-  <p style="
-    margin-top:20px;
-    font-style:italic;
-    opacity:.7;
-  ">
-    Semoga kebersamaan ini membawa keberkahan
-    di bulan suci Ramadhan.
+  <p style="font-style:italic;">
+    Semoga kebersamaan ini membawa keberkahan.
   </p>
-
-  <p style="
-    margin-top:34px;
-    font-weight:bold;
-  ">
-    Hormat Kami,<br>
+  <p style="margin-top:30px;font-weight:bold;">
     PT Pakar Corp Integrasi Utama
   </p>
 </section>
-  
+
 <script>
-function openInvitation(){
-document.getElementById("cover").classList.add("hide");
-document.querySelector(".hero").scrollIntoView({behavior:"smooth"});
-}
-
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-/* reveal */
-document.querySelectorAll("section").forEach(sec=>{
-window.addEventListener("scroll",()=>{
-if(sec.getBoundingClientRect().top < window.innerHeight - 120){
-sec.classList.add("show");
-}
-});
-});
-
 function kirimRSVP(status){
-const nama=document.getElementById("nama").value;
-if(!nama){alert("Isi nama dulu");return;}
-document.getElementById("hasil").innerHTML=
-`Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
+  var nama=document.getElementById("nama").value;
+  if(nama===""){alert("Isi nama dulu ya");return;}
+  document.getElementById("hasil").innerHTML=
+  "Terima kasih, "+nama+" ("+status+")";
 }
 </script>
 
 </body>
 </html>
-
-
-
