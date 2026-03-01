@@ -132,43 +132,29 @@ opacity:0.06;
 pointer-events:none;
 }
 
-/* ===== GOLD FALL EFFECT ===== */
-.gold{
+/* Sparkle */
+.sparkle{
 position:fixed;
-top:-10px;
-width:5px;
-height:5px;
+width:6px;
+height:6px;
 background:gold;
 border-radius:50%;
-opacity:0.6;
-animation:fall linear infinite;
-z-index:1;
+animation:float 6s infinite ease-in-out;
+opacity:0.5;
 }
 
-@keyframes fall{
-to{
-transform:translateY(110vh);
-}
-}
-
-/* DETAIL BOX STYLE */
-.detail-box{
-background:white;
-padding:20px 30px;
-margin:10px;
-border-radius:20px;
-box-shadow:0 8px 20px rgba(212,175,55,0.25);
-width:clamp(250px,70%,500px);
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0);}
 }
 
-/* Countdown */
 .countdown{
 margin-top:20px;
 font-weight:bold;
 font-size:clamp(16px,2.5vw,22px);
 }
 
-/* RSVP */
 input{
 padding:12px;
 border-radius:30px;
@@ -198,17 +184,10 @@ margin-top:30px;
 
 <body>
 
-<!-- GOLD EFFECT SCRIPT -->
-<script>
-for(let i=0;i<35;i++){
-let gold=document.createElement("div");
-gold.className="gold";
-gold.style.left=Math.random()*100+"vw";
-gold.style.animationDuration=(6+Math.random()*6)+"s";
-gold.style.opacity=Math.random();
-document.body.appendChild(gold);
-}
-</script>
+<!-- Sparkles -->
+<div class="sparkle" style="top:20%; left:10%;"></div>
+<div class="sparkle" style="top:40%; left:80%;"></div>
+<div class="sparkle" style="top:70%; left:30%;"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -222,27 +201,10 @@ document.body.appendChild(gold);
 <!-- DETAIL -->
 <section id="detail">
 <img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
-
-<h2>Detail Acara</h2>
-
-<div class="detail-box">
-📅 <b>Jumat, 6 Maret 2026</b>
-</div>
-
-<div class="detail-box">
-🕰 17.00 WIB – Selesai
-</div>
-
-<div class="detail-box">
-📍 Omah Joglo Gendis
-</div>
-
-<div class="detail-box">
-👗 Dresscode: Hitam & Coklat
-</div>
-
+<h2>Jumat, 6 Maret 2026</h2>
+<p>17.00 WIB – Selesai</p>
+<p><b>Dresscode: Hitam & Coklat</b></p>
 <div class="countdown" id="countdown"></div>
-
 <button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
@@ -262,6 +224,7 @@ document.body.appendChild(gold);
 <h2>Konfirmasi Kehadiran</h2>
 
 <input type="text" id="nama" placeholder="Masukkan Nama Anda">
+
 <br>
 
 <button class="rsvp-btn hadir" onclick="kirimRSVP('Hadir')">✔ Hadir</button>
@@ -299,7 +262,7 @@ sec.classList.add("show");
 });
 });
 
-/* Scroll */
+/* Scroll to section */
 function scrollToSection(id){
 document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
@@ -328,6 +291,28 @@ return;
 document.getElementById("hasil").innerHTML =
 "Terima kasih, " + nama + ". Konfirmasi Anda: " + status;
 }
+
+/* Auto snap scroll */
+let slides = document.querySelectorAll("section");
+let currentSlide = 0;
+let autoMode = true;
+
+function snapScroll(){
+if(!autoMode) return;
+
+currentSlide++;
+if(currentSlide >= slides.length){
+currentSlide = slides.length - 1;
+return;
+}
+
+slides[currentSlide].scrollIntoView({behavior:"smooth"});
+}
+
+setInterval(snapScroll, 5000);
+
+window.addEventListener("wheel", function(){ autoMode = false; });
+window.addEventListener("touchstart", function(){ autoMode = false; });
 
 </script>
 
