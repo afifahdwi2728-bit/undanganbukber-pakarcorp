@@ -3,49 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan Buka Puasa Bersama</title>
+<title>Undangan Bukber Pakar Corp</title>
+
 <style>
 body {
-margin:0;
-font-family: Arial, sans-serif;
-background: linear-gradient(135deg,#1e3c72,#2a5298);
-color:white;
-text-align:center;
-padding:50px 20px;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #3e2723, #1b1b1b);
+  color: white;
 }
-.card{
-background:rgba(255,255,255,0.1);
-padding:40px;
-border-radius:15px;
-max-width:600px;
-margin:auto;
+
+.cover {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-h1{font-size:36px;}
-.btn{
-display:inline-block;
-margin:15px;
-padding:12px 25px;
-background:gold;
-color:black;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
+
+button {
+  padding: 12px 25px;
+  background-color: #8d6e63;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #5d4037;
+}
+
+.content {
+  display: none;
+  padding: 40px 20px;
+}
+
+.card {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.countdown {
+  font-size: 20px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.dresscode {
+  margin-top: 20px;
+  font-style: italic;
 }
 </style>
 </head>
+
 <body>
 
-<div class="card">
-<h1>Buka Puasa Bersama 2026</h1>
-<p><strong>Jumat, 6 Maret 2026</strong></p>
-<p>17.00 WIB – selesai</p>
-<p>Omah Joglo Gendis, Bojongsari</p>
-
-<a class="btn" href="MASUKKAN_LINK_MAPS" target="_blank">Lihat Lokasi</a>
-<a class="btn" href="MASUKKAN_LINK_FORM" target="_blank">Konfirmasi Kehadiran</a>
-
-<p>Merupakan kehormatan bagi kami atas kehadiran Bapak/Ibu.</p>
+<div class="cover" id="cover">
+  <h1>Undangan Buka Puasa Bersama</h1>
+  <p>Pakar Corp</p>
+  <button onclick="openInvite()">Buka Undangan</button>
 </div>
+
+<div class="content" id="content">
+  <div class="card">
+    <h2>Assalamu’alaikum Wr. Wb.</h2>
+
+    <p>
+      Dengan hormat, kami mengundang Bapak/Ibu untuk hadir dalam acara:
+    </p>
+
+    <h3>Buka Puasa Bersama</h3>
+
+    <p>
+      📅 Jumat, 6 Maret 2026<br>
+      🕔 17.00 WIB – selesai<br>
+      📍 Omah Joglo Gendis, Bojongsari
+    </p>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="dresscode">
+      👔 Dresscode: Hitam & Coklat
+    </div>
+
+    <br>
+
+    <button onclick="rsvpWA()">Konfirmasi Kehadiran (RSVP)</button>
+  </div>
+</div>
+
+<script>
+function openInvite() {
+  document.getElementById("cover").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+// Countdown
+var eventDate = new Date("March 6, 2026 17:00:00").getTime();
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = eventDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+  document.getElementById("countdown").innerHTML =
+    "Menuju Acara: " + days + " Hari " + hours + " Jam " + minutes + " Menit";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Acara Sedang Berlangsung";
+  }
+}, 1000);
+
+// RSVP WA
+function rsvpWA() {
+  var phone = "628XXXXXXXXXX"; // GANTI DENGAN NOMOR KAMU
+  var message = "Assalamu’alaikum, saya akan hadir di acara Bukber 6 Maret 2026.";
+  window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message));
+}
+</script>
 
 </body>
 </html>
