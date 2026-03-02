@@ -10,12 +10,17 @@ html{scroll-behavior:smooth;}
 body{
 margin:0;
 font-family:'Georgia', serif;
-background:linear-gradient(180deg,#ffffff,#fff6e5,#fdecc8);
-color:#b8860b;
-overflow-x:hidden;
+background:#fafafa;
+color:#5f4a12;
 }
 
-/* ================= COVER AMPL0P ================= */
+/* ===== GENERAL SECTION ===== */
+section{
+padding:42px 6vw;
+text-align:center;
+}
+
+/* ===== COVER ===== */
 #cover{
 position:fixed;
 inset:0;
@@ -24,87 +29,37 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-transition:1s ease;
+transition:.8s;
 }
-#cover.hide{
-opacity:0;
-pointer-events:none;
-}
+#cover.hide{opacity:0;pointer-events:none;}
+
 .envelope{
 background:#8b5a2b;
-padding:50px 40px;
+padding:36px 32px;
 border-radius:18px;
 box-shadow:0 30px 60px rgba(0,0,0,.45);
-text-align:center;
 color:#fff;
-animation:float 4s ease-in-out infinite;
+text-align:center;
 }
-.envelope p{
-letter-spacing:2px;
-font-size:14px;
-opacity:.85;
-}
-.envelope h2{
-margin:10px 0 20px;
-font-size:28px;
-}
+.envelope p{font-size:13px;letter-spacing:2px;opacity:.85;}
+.envelope h2{margin:8px 0 16px;font-size:26px;}
 .envelope button{
 background:#d4af37;
-color:white;
 border:none;
-padding:14px 34px;
+padding:12px 30px;
 border-radius:30px;
+color:#fff;
 font-weight:bold;
-cursor:pointer;
 }
 
-/* ================= SECTION ================= */
-section{
+/* ===== HERO ===== */
+.hero{
+min-height:100vh;
+background:url('bg bukber.jpeg') center/cover no-repeat;
+color:#fff;
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
-text-align:center;
-padding:5vw;
-position:relative;
-opacity:0;
-transform:translateY(40px);
-transition:1.2s ease;
-}
-section.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* FULL HEIGHT ONLY HERO & DETAIL */
-.hero,#detail{min-height:100vh;}
-
-h1{font-size:clamp(42px,7vw,80px);}
-h2{font-size:clamp(26px,4.5vw,44px);}
-p{font-size:clamp(15px,2.4vw,21px);margin:6px 0;}
-
-/* ================= BUTTON ================= */
-button{
-background:linear-gradient(45deg,#d4af37,#f5d76e);
-color:white;
-border:none;
-padding:13px 34px;
-border-radius:40px;
-cursor:pointer;
-font-weight:bold;
-margin-top:18px;
-transition:.4s;
-box-shadow:0 0 15px rgba(212,175,55,.45);
-}
-button:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px rgba(212,175,55,.85);
-}
-
-/* ================= HERO ================= */
-.hero{
-background:url('bg bukber.jpeg') center/cover no-repeat;
-color:white;
 position:relative;
 }
 .hero::after{
@@ -115,94 +70,64 @@ background:rgba(0,0,0,.55);
 }
 .hero *{position:relative;z-index:2;}
 
-/* MOON */
-.moon{
-position:absolute;
-top:10%;
-right:8%;
-width:80px;height:80px;
-background:radial-gradient(circle at 30% 30%,#fff6c2,#d4af37);
-border-radius:50%;
-box-shadow:0 0 30px gold;
+.hero h1{
+font-size:clamp(42px,7vw,76px);
+margin-bottom:6px;
 }
-.moon::after{
-content:"";
-position:absolute;
-left:25px;
-width:80px;height:80px;
-background:#000;
-border-radius:50%;
-}
+.hero p{margin:3px 0;}
 
-/* ================= SAVE THE DATE ================= */
-.save-date{
-position:absolute;
-top:6%;
-left:50%;
-transform:translateX(-50%) rotate(-3deg);
-font-family:'Brush Script MT','Segoe Script',cursive;
-font-size:clamp(48px,8vw,120px);
-color:rgba(212,175,55,.32);
-pointer-events:none;
-}
+/* ===== DETAIL ===== */
+#detail{background:#fff;}
 
-/* MOBILE FIX SAVE DATE */
-@media(max-width:768px){
-.save-date{top:12%;font-size:clamp(42px,12vw,90px);}
-}
-
-/* ================= EVENT BOX GLASS ================= */
 .event-box{
-background:rgba(255,255,255,.28);
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
-border-radius:28px;
-padding:28px 38px;
-margin-top:32px;
-border:1px solid rgba(255,255,255,.35);
-box-shadow:0 20px 45px rgba(0,0,0,.12);
+margin:0 auto;
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(14px);
+border-radius:22px;
+padding:22px;
 max-width:520px;
+box-shadow:0 12px 28px rgba(0,0,0,.12);
 }
-.event-box h2{color:#7a5a16;}
-.event-box p{color:#5f4a12;}
-.dresscode{font-weight:bold;color:#6b5015;}
+.event-box h2{margin-bottom:6px;}
+.event-box p{margin:3px 0;}
+.dresscode{font-weight:bold;}
 
-/* ================= MOSQUE ================= */
-.mosque{
-position:absolute;
-bottom:0;
-left:0;
+/* ===== LOKASI ===== */
+#lokasi img{
 width:100%;
-opacity:.06;
-pointer-events:none;
+max-width:520px;
+border-radius:18px;
+margin-top:12px;
 }
 
-/* ================= DIVIDER ================= */
-.divider{
-width:80px;height:2px;
-background:linear-gradient(90deg,transparent,#d4af37,transparent);
-margin:14px auto 26px;
+/* ===== RSVP ===== */
+#rsvp input{
+width:100%;
+max-width:320px;
+padding:12px;
+border-radius:30px;
+border:1px solid #d4af37;
+margin-bottom:10px;
+}
+#rsvp button{
+margin:6px;
+padding:12px 26px;
+border:none;
+border-radius:30px;
+background:#d4af37;
+color:#fff;
+font-weight:bold;
 }
 
-/* ================= RSVP FIX JARAK ================= */
-#rsvp{
-padding-top:60px;
-padding-bottom:60px;
+/* ===== FOOTER ===== */
+#penutup{
+background:#fff;
+padding-bottom:80px;
 }
 
-/* ================= SPARKLE ================= */
-.sparkle{
-position:fixed;
-width:6px;height:6px;
-background:gold;
-border-radius:50%;
-animation:float 6s infinite ease-in-out;
-opacity:.5;
-}
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-100%{transform:translateY(0);}
+/* ===== BUTTON GENERAL ===== */
+button{
+cursor:pointer;
 }
 </style>
 </head>
@@ -212,152 +137,73 @@ opacity:.5;
 <!-- ===== COVER ===== -->
 <div id="cover">
   <div class="envelope">
-    <p>Undangan Buka Puasa Bersama</p>
-    <h2>PT Pakar Corp</h2>
+    <p>YOU'RE INVITED TO</p>
+    <h2>Buka Puasa Bersama</h2>
     <button onclick="openInvitation()">Buka Undangan</button>
   </div>
 </div>
 
-<div class="sparkle" style="top:20%;left:10%;"></div>
-<div class="sparkle" style="top:40%;left:80%;"></div>
-
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero">
-<div class="moon"></div>
-<h1>Ramadhan Kareem</h1>
-<p>Undangan Buka Puasa Bersama</p>
-<p><b>PT Pakar Corp Integrasi Utama</b></p>
-<button onclick="scrollToSection('detail')">Lihat Detail</button>
+  <h1>Ramadhan Kareem</h1>
+  <p>Undangan Buka Puasa Bersama</p>
+  <p><b>PT Pakar Corp Integrasi Utama</b></p>
 </section>
 
-<!-- DETAIL -->
+<!-- ===== DETAIL ===== -->
 <section id="detail">
-<div class="save-date">Save The Date</div>
-<img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
-
-<div class="event-box">
-<h2>Jumat, 6 Maret 2026</h2>
-<p>17.00 WIB – Selesai</p>
-<p class="dresscode">Dresscode: Hitam & Coklat</p>
-</div>
-
-<button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
+  <div class="event-box">
+    <h2>Jumat, 6 Maret 2026</h2>
+    <p>17.00 WIB – Selesai</p>
+    <p class="dresscode">Dresscode: Hitam & Coklat</p>
+  </div>
 </section>
 
-<!-- LOKASI -->
+<!-- ===== LOKASI ===== -->
 <section id="lokasi">
-<p style="letter-spacing:3px;opacity:.6;">Lokasi Acara</p>
-<h2>Omah Joglo Gendis</h2>
-<div class="divider"></div>
-<img src="omah.jpg" style="max-width:85%;border-radius:20px;">
-<br>
-<a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
-<button>Lihat di Google Maps</button>
-</a>
-<button onclick="scrollToSection('rsvp')">RSVP</button>
+  <h2>Lokasi Acara</h2>
+  <p>Omah Joglo Gendis</p>
+  <img src="omah.jpg" alt="Lokasi">
+  <br><br>
+  <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
+    <button>Lihat Google Maps</button>
+  </a>
 </section>
 
-<!-- RSVP -->
+<!-- ===== RSVP ===== -->
 <section id="rsvp">
-<h2>Konfirmasi Kehadiran</h2>
-<input type="text" id="nama" placeholder="Masukkan Nama Anda" style="padding:12px;border-radius:30px;border:1px solid #d4af37;">
-<br>
-<button onclick="kirimRSVP('Hadir')">✔ Hadir</button>
-<button onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
-<p id="hasil"></p>
+  <h2>Konfirmasi Kehadiran</h2>
+  <input type="text" id="nama" placeholder="Masukkan Nama">
+  <br>
+  <button onclick="kirimRSVP('Hadir')">✔ Hadir</button>
+  <button onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
+  <p id="hasil"></p>
 </section>
 
-<!-- PENUTUP -->
-<section id="penutup" style="
-  min-height:auto;
-  padding:70px 6vw 90px;
-">
-  <div style="
-  font-family:'Brush Script MT',cursive;
-  font-size:44px;
-  color:rgba(212,175,55,.2);
-  margin-bottom:10px;
-">
-  Ramadhan Kareem
-</div>
+<!-- ===== PENUTUP ===== -->
+<section id="penutup">
   <h2>Terima Kasih</h2>
-
-  <div style="
-    width:80px;
-    height:2px;
-    background:linear-gradient(to right,transparent,#d4af37,transparent);
-    margin:18px auto 28px;
-  "></div>
-
-  <p style="max-width:600px;opacity:.85;">
+  <p>
     Merupakan suatu kehormatan dan kebahagiaan bagi kami
     apabila Bapak/Ibu/Saudara/i berkenan hadir dan
     berbuka puasa bersama.
   </p>
-
-  <p style="
-    margin-top:20px;
-    font-style:italic;
-    opacity:.7;
-  ">
-    Semoga kebersamaan ini membawa keberkahan
-    di bulan suci Ramadhan.
-  </p>
-
-  <p style="
-    margin-top:34px;
-    font-weight:bold;
-  ">
-    Hormat Kami,<br>
-    PT Pakar Corp Integrasi Utama
-  </p>
+  <br>
+  <b>PT Pakar Corp Integrasi Utama</b>
 </section>
-  
+
 <script>
 function openInvitation(){
   document.getElementById("cover").classList.add("hide");
-  document.querySelector(".hero").scrollIntoView({behavior:"smooth"});
-
-  const music = document.getElementById("bgm");
-  music.volume = 0.6;
-  music.play();
 }
-
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-/* reveal animation */
-document.querySelectorAll("section").forEach(sec=>{
-  window.addEventListener("scroll",()=>{
-    if(sec.getBoundingClientRect().top < window.innerHeight - 120){
-      sec.classList.add("show");
-    }
-  });
-});
 
 function kirimRSVP(status){
   const nama=document.getElementById("nama").value;
-  if(!nama){
-    alert("Isi nama dulu");
-    return;
-  }
+  if(!nama){alert("Isi nama dulu");return;}
   document.getElementById("hasil").innerHTML=
   `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
 }
 </script>
 
-<!-- AUDIO -->
-<audio id="bgm" loop>
-  <source src="rahmatann.mp3" type="audio/mpeg">
-</audio>
-
 </body>
 </html>
-
-
-
-
-
-
-
