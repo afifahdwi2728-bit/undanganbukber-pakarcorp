@@ -289,7 +289,6 @@ button:hover{
     PT Pakar Corp Integrasi Utama
   </p>
 </section>
-
 <script>
 function openInvitation(){
   document.getElementById("cover").classList.add("hide");
@@ -312,7 +311,6 @@ document.querySelectorAll("section").forEach(sec=>{
   });
 });
 
-<script>
 function kirimRSVP(status){
   const nama=document.getElementById("nama").value;
   if(!nama){
@@ -332,15 +330,6 @@ function kirimRSVP(status){
   `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
 }
 </script>
-  const nama=document.getElementById("nama").value;
-  if(!nama){
-    alert("Isi nama dulu");
-    return;
-  }
-  document.getElementById("hasil").innerHTML=
-  `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
-}
-</script>
 
 <!-- AUDIO -->
 <audio id="bgm" loop>
@@ -349,4 +338,5 @@ function kirimRSVP(status){
 
 </body>
 </html>
+
 
