@@ -312,7 +312,26 @@ document.querySelectorAll("section").forEach(sec=>{
   });
 });
 
+<script>
 function kirimRSVP(status){
+  const nama=document.getElementById("nama").value;
+  if(!nama){
+    alert("Isi nama dulu");
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbzPTlH5pOeyvAFsoBOQOmwqaa9wAHFxbVe5jC3Ab5zU3t1-6jrAnD8KFcqbrYCURGUD/exec",{
+    method:"POST",
+    body:JSON.stringify({
+      nama:nama,
+      status:status
+    })
+  });
+
+  document.getElementById("hasil").innerHTML=
+  `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
+}
+</script>
   const nama=document.getElementById("nama").value;
   if(!nama){
     alert("Isi nama dulu");
@@ -330,3 +349,4 @@ function kirimRSVP(status){
 
 </body>
 </html>
+
