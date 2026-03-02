@@ -10,17 +10,12 @@ html{scroll-behavior:smooth;}
 body{
 margin:0;
 font-family:'Georgia', serif;
-background:#fafafa;
-color:#5f4a12;
+background:linear-gradient(180deg,#ffffff,#fff6e5,#fdecc8);
+color:#b8860b;
+overflow-x:hidden;
 }
 
-/* ===== GENERAL SECTION ===== */
-section{
-padding:42px 6vw;
-text-align:center;
-}
-
-/* ===== COVER ===== */
+/* ================= COVER ================= */
 #cover{
 position:fixed;
 inset:0;
@@ -29,37 +24,49 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-transition:.8s;
+transition:1s ease;
 }
-#cover.hide{opacity:0;pointer-events:none;}
-
+#cover.hide{opacity=0;pointer-events:none;}
 .envelope{
 background:#8b5a2b;
-padding:36px 32px;
+padding:44px 36px;
 border-radius:18px;
 box-shadow:0 30px 60px rgba(0,0,0,.45);
-color:#fff;
 text-align:center;
+color:#fff;
+animation:float 4s ease-in-out infinite;
 }
-.envelope p{font-size:13px;letter-spacing:2px;opacity:.85;}
-.envelope h2{margin:8px 0 16px;font-size:26px;}
+.envelope p{letter-spacing:2px;font-size:14px;opacity:.85;}
+.envelope h2{margin:8px 0 18px;font-size:26px;}
 .envelope button{
 background:#d4af37;
+color:white;
 border:none;
-padding:12px 30px;
+padding:14px 32px;
 border-radius:30px;
-color:#fff;
 font-weight:bold;
+cursor:pointer;
 }
 
-/* ===== HERO ===== */
-.hero{
-min-height:100vh;
-background:url('bg bukber.jpeg') center/cover no-repeat;
-color:#fff;
+/* ================= SECTION ================= */
+section{
 display:flex;
 flex-direction:column;
+align-items:center;
+text-align:center;
+padding:48px 6vw;
+opacity:0;
+transform:translateY(40px);
+transition:1.2s ease;
+}
+section.show{opacity:1;transform:translateY(0);}
+
+/* HERO FULL */
+.hero{
+min-height:100vh;
 justify-content:center;
+background:url('bg bukber.jpeg') center/cover no-repeat;
+color:white;
 position:relative;
 }
 .hero::after{
@@ -70,140 +77,177 @@ background:rgba(0,0,0,.55);
 }
 .hero *{position:relative;z-index:2;}
 
-.hero h1{
-font-size:clamp(42px,7vw,76px);
-margin-bottom:6px;
+/* ================= TEXT ================= */
+h1{font-size:clamp(42px,7vw,80px);}
+h2{font-size:clamp(26px,4.5vw,44px);}
+p{font-size:clamp(15px,2.4vw,21px);margin:6px 0;}
+
+/* ================= BUTTON ================= */
+button{
+background:linear-gradient(45deg,#d4af37,#f5d76e);
+color:white;
+border:none;
+padding:13px 34px;
+border-radius:40px;
+cursor:pointer;
+font-weight:bold;
+margin-top:16px;
+transition:.4s;
+box-shadow:0 0 15px rgba(212,175,55,.45);
 }
-.hero p{margin:3px 0;}
+button:hover{transform:scale(1.08);}
 
-/* ===== DETAIL ===== */
-#detail{background:#fff;}
+/* ================= MOON ================= */
+.moon{
+position:absolute;
+top:10%;
+right:8%;
+width:80px;height:80px;
+background:radial-gradient(circle,#fff6c2,#d4af37);
+border-radius:50%;
+box-shadow:0 0 30px gold;
+}
 
+/* ================= SAVE DATE ================= */
+.save-date{
+position:absolute;
+top:6%;
+left:50%;
+transform:translateX(-50%) rotate(-3deg);
+font-family:'Brush Script MT',cursive;
+font-size:clamp(48px,8vw,110px);
+color:rgba(212,175,55,.3);
+pointer-events:none;
+}
+
+/* ================= EVENT BOX ================= */
 .event-box{
-margin:0 auto;
-background:rgba(255,255,255,.35);
-backdrop-filter:blur(14px);
-border-radius:22px;
-padding:22px;
+background:rgba(255,255,255,.28);
+backdrop-filter:blur(12px);
+border-radius:26px;
+padding:24px 30px;
+margin:20px auto 12px;
 max-width:520px;
-box-shadow:0 12px 28px rgba(0,0,0,.12);
+border:1px solid rgba(255,255,255,.35);
 }
-.event-box h2{margin-bottom:6px;}
-.event-box p{margin:3px 0;}
+.event-box h2{color:#7a5a16;}
+.event-box p{color:#5f4a12;}
 .dresscode{font-weight:bold;}
 
-/* ===== LOKASI ===== */
-#lokasi img{
+/* ================= MOSQUE ================= */
+.mosque{
+position:absolute;
+bottom:0;
+left:0;
 width:100%;
-max-width:520px;
-border-radius:18px;
-margin-top:12px;
+opacity:.06;
+pointer-events:none;
 }
 
-/* ===== RSVP ===== */
-#rsvp input{
-width:100%;
-max-width:320px;
-padding:12px;
-border-radius:30px;
-border:1px solid #d4af37;
-margin-bottom:10px;
-}
-#rsvp button{
-margin:6px;
-padding:12px 26px;
-border:none;
-border-radius:30px;
-background:#d4af37;
-color:#fff;
-font-weight:bold;
+/* ================= DIVIDER ================= */
+.divider{
+width:70px;height:2px;
+background:linear-gradient(90deg,transparent,#d4af37,transparent);
+margin:14px auto 22px;
 }
 
-/* ===== FOOTER ===== */
-#penutup{
-background:#fff;
-padding-bottom:80px;
+/* ================= SPARKLE ================= */
+.sparkle{
+position:fixed;
+width:6px;height:6px;
+background:gold;
+border-radius:50%;
+animation:float 6s infinite;
+opacity:.5;
 }
-
-/* ===== BUTTON GENERAL ===== */
-button{
-cursor:pointer;
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== COVER ===== -->
+<!-- COVER -->
 <div id="cover">
   <div class="envelope">
-    <p>YOU'RE INVITED TO</p>
-    <h2>Buka Puasa Bersama</h2>
+    <p>You're Invited To</p>
+    <h2>Bukber Pakar Corp</h2>
     <button onclick="openInvitation()">Buka Undangan</button>
   </div>
 </div>
 
-<!-- ===== HERO ===== -->
+<div class="sparkle" style="top:20%;left:10%"></div>
+<div class="sparkle" style="top:40%;left:80%"></div>
+
+<!-- HERO -->
 <section class="hero">
-  <h1>Ramadhan Kareem</h1>
-  <p>Undangan Buka Puasa Bersama</p>
-  <p><b>PT Pakar Corp Integrasi Utama</b></p>
+<div class="moon"></div>
+<h1>Ramadhan Kareem</h1>
+<p>Undangan Buka Puasa Bersama</p>
+<p><b>PT Pakar Corp Integrasi Utama</b></p>
+<button onclick="scrollToSection('detail')">Lihat Detail</button>
 </section>
 
-<!-- ===== DETAIL ===== -->
+<!-- DETAIL -->
 <section id="detail">
-  <div class="event-box">
-    <h2>Jumat, 6 Maret 2026</h2>
-    <p>17.00 WIB – Selesai</p>
-    <p class="dresscode">Dresscode: Hitam & Coklat</p>
-  </div>
+<div class="save-date">Save The Date</div>
+<img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
+
+<div class="event-box">
+<h2>Jumat, 6 Maret 2026</h2>
+<p>17.00 WIB – Selesai</p>
+<p class="dresscode">Dresscode: Hitam & Coklat</p>
+</div>
+
+<button onclick="scrollToSection('lokasi')">Lihat Lokasi</button>
 </section>
 
-<!-- ===== LOKASI ===== -->
+<!-- LOKASI -->
 <section id="lokasi">
-  <h2>Lokasi Acara</h2>
-  <p>Omah Joglo Gendis</p>
-  <img src="omah.jpg" alt="Lokasi">
-  <br><br>
-  <a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
-    <button>Lihat Google Maps</button>
-  </a>
+<p style="letter-spacing:3px;opacity:.6;">Lokasi Acara</p>
+<h2>Omah Joglo Gendis</h2>
+<div class="divider"></div>
+<img src="omah.jpg" style="width:100%;max-width:520px;border-radius:20px;">
+<a href="https://maps.google.com/?q=Omah+Joglo+Gendis+Bojongsari" target="_blank">
+<button>Lihat di Google Maps</button>
+</a>
 </section>
 
-<!-- ===== RSVP ===== -->
-<section id="rsvp">
-  <h2>Konfirmasi Kehadiran</h2>
-  <input type="text" id="nama" placeholder="Masukkan Nama">
-  <br>
-  <button onclick="kirimRSVP('Hadir')">✔ Hadir</button>
-  <button onclick="kirimRSVP('Tidak Hadir')">✖ Tidak Hadir</button>
-  <p id="hasil"></p>
-</section>
-
-<!-- ===== PENUTUP ===== -->
+<!-- PENUTUP -->
 <section id="penutup">
-  <h2>Terima Kasih</h2>
-  <p>
-    Merupakan suatu kehormatan dan kebahagiaan bagi kami
-    apabila Bapak/Ibu/Saudara/i berkenan hadir dan
-    berbuka puasa bersama.
-  </p>
-  <br>
-  <b>PT Pakar Corp Integrasi Utama</b>
+<h2>Terima Kasih</h2>
+<div class="divider"></div>
+<p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila berkenan hadir.</p>
+<p style="font-style:italic;opacity:.7;">Semoga membawa keberkahan Ramadhan.</p>
+<p style="font-weight:bold;margin-top:20px;">
+Hormat Kami<br>PT Pakar Corp Integrasi Utama
+</p>
 </section>
 
 <script>
 function openInvitation(){
-  document.getElementById("cover").classList.add("hide");
+document.getElementById("cover").classList.add("hide");
+document.querySelector(".hero").scrollIntoView({behavior:"smooth"});
+document.getElementById("bgm").play();
 }
-
-function kirimRSVP(status){
-  const nama=document.getElementById("nama").value;
-  if(!nama){alert("Isi nama dulu");return;}
-  document.getElementById("hasil").innerHTML=
-  `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
+document.querySelectorAll("section").forEach(sec=>{
+window.addEventListener("scroll",()=>{
+if(sec.getBoundingClientRect().top < window.innerHeight-120){
+sec.classList.add("show");
+}
+});
+});
 </script>
+
+<audio id="bgm" loop>
+<source src="rahmatann.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
