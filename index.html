@@ -77,7 +77,8 @@ transform:translateY(0);
 }
 
 /* FULL HEIGHT ONLY HERO & DETAIL */
-.hero,#detail{min-height:100vh;}
+.hero{min-height:100vh;}
+#detail{min-height:auto;padding-top:90px;padding-bottom:90px;}
 
 h1{font-size:clamp(42px,7vw,80px);}
 h2{font-size:clamp(26px,4.5vw,44px);}
@@ -212,8 +213,8 @@ opacity:.5;
 <!-- ===== COVER ===== -->
 <div id="cover">
   <div class="envelope">
-    <p>Undangan Buka Puasa Bersama</p>
-    <h2>PT Pakar Corp</h2>
+    <p>You’re Invited</p>
+<h2>Buka Puasa Bersama<br>PT Pakar Corp</h2>
     <button onclick="openInvitation()">Buka Undangan</button>
   </div>
 </div>
@@ -236,6 +237,32 @@ opacity:.5;
 <img class="mosque" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Mosque_silhouette.svg/1920px-Mosque_silhouette.svg.png">
 
 <div class="event-box">
+  <div class="countdown">
+  <div><span id="jam">00</span><small>Jam</small></div>
+  <div><span id="menit">00</span><small>Menit</small></div>
+  <div><span id="detik">00</span><small>Detik</small></div>
+</div>
+  .countdown{
+display:flex;
+gap:18px;
+margin-top:30px;
+}
+.countdown div{
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(10px);
+padding:16px 20px;
+border-radius:16px;
+min-width:80px;
+}
+.countdown span{
+font-size:28px;
+font-weight:bold;
+color:#7a5a16;
+}
+.countdown small{
+font-size:12px;
+opacity:.7;
+}
 <h2>Jumat, 6 Maret 2026</h2>
 <p>17.00 WIB – Selesai</p>
 <p class="dresscode">Dresscode: Hitam & Coklat</p>
@@ -345,6 +372,19 @@ function kirimRSVP(status){
   document.getElementById("hasil").innerHTML=
   `Terima kasih <b>${nama}</b>, konfirmasi: <b>${status}</b>`;
 }
+  const targetDate = new Date("2026-03-06T17:00:00").getTime();
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  document.getElementById("jam").innerText =
+    Math.floor((diff / (1000*60*60)) % 24);
+  document.getElementById("menit").innerText =
+    Math.floor((diff / (1000*60)) % 60);
+  document.getElementById("detik").innerText =
+    Math.floor((diff / 1000) % 60);
+},1000);
 </script>
 
 <!-- AUDIO -->
@@ -354,6 +394,7 @@ function kirimRSVP(status){
 
 </body>
 </html>
+
 
 
 
